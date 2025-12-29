@@ -65,7 +65,7 @@ export default {
       },
       boxShadow: {
         glow: "var(--glow-pink)",
-        "glow-lg": "0 0 80px hsl(338 68% 47% / 0.4)",
+        "glow-lg": "0 0 80px hsl(340 82% 52% / 0.4)",
       },
       keyframes: {
         "accordion-down": {
@@ -85,8 +85,8 @@ export default {
           to: { opacity: "1", transform: "translateX(0)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(338 68% 47% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(338 68% 47% / 0.5)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(340 82% 52% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(340 82% 52% / 0.5)" },
         },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
