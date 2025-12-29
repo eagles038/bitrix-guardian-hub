@@ -35,11 +35,14 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center group-hover:shadow-glow transition-shadow duration-300">
-              <span className="font-mono font-bold text-primary-foreground text-lg">1C</span>
+          <a href="#" className="flex items-center gap-3 group">
+            <svg className="w-10 h-10 text-foreground group-hover:text-primary transition-colors duration-300" viewBox="0 0 100 100" fill="currentColor">
+              <path d="M50 5c-5 0-10 2-14 5L15 25c-4 3-7 8-7 14v22c0 6 3 11 7 14l21 15c4 3 9 5 14 5s10-2 14-5l21-15c4-3 7-8 7-14V39c0-6-3-11-7-14L64 10c-4-3-9-5-14-5zm0 15c2 0 4 1 5 2l15 11c2 1 3 3 3 5v16c0 2-1 4-3 5L55 70c-1 1-3 2-5 2s-4-1-5-2L30 59c-2-1-3-3-3-5V38c0-2 1-4 3-5l15-11c1-1 3-2 5-2z"/>
+            </svg>
+            <div className="hidden sm:flex flex-col">
+              <span className="font-bold text-foreground text-lg leading-tight">BITRIX</span>
+              <span className="text-xs text-primary leading-tight">expert</span>
             </div>
-            <span className="font-semibold text-foreground hidden sm:block">BitrixPro</span>
           </a>
 
           {/* Desktop Navigation */}
