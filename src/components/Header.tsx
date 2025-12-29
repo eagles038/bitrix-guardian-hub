@@ -35,13 +35,13 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <svg className="w-12 h-12 text-foreground group-hover:text-primary transition-colors duration-300" viewBox="0 0 64 64" fill="currentColor">
-              <path d="M32 4c-2 0-4 1-6 3-4 4-8 6-12 7-2 1-4 2-5 4-1 1-1 3 0 5 2 4 5 7 9 9 1 1 2 2 2 4 0 3 1 6 3 8 2 3 5 5 8 6 1 0 2 1 2 2 0 2 1 4 3 6 2 2 4 3 6 3 2 0 4-1 6-3 2-2 3-4 3-6 0-1 1-2 2-2 3-1 6-3 8-6 2-2 3-5 3-8 0-2 1-3 2-4 4-2 7-5 9-9 1-2 1-4 0-5-1-2-3-3-5-4-4-1-8-3-12-7-2-2-4-3-6-3zm-8 18c2-1 5-1 7 0 2 2 3 4 2 6-1 3-4 5-7 5-2 0-4-1-5-3-1-2-1-4 0-6 1-1 2-2 3-2zm16 0c1 0 2 1 3 2 1 2 1 4 0 6-1 2-3 3-5 3-3 0-6-2-7-5-1-2 0-4 2-6 2-1 5-1 7 0zm-8 12c2 0 4 2 4 4s-2 4-4 4-4-2-4-4 2-4 4-4z"/>
+          <a href="#" className="flex items-center gap-3 group">
+            <svg className="w-10 h-10 text-foreground group-hover:text-primary transition-colors duration-300" viewBox="0 0 100 100" fill="currentColor">
+              <path d="M50 5c-5 0-10 2-14 5L15 25c-4 3-7 8-7 14v22c0 6 3 11 7 14l21 15c4 3 9 5 14 5s10-2 14-5l21-15c4-3 7-8 7-14V39c0-6-3-11-7-14L64 10c-4-3-9-5-14-5zm0 15c2 0 4 1 5 2l15 11c2 1 3 3 3 5v16c0 2-1 4-3 5L55 70c-1 1-3 2-5 2s-4-1-5-2L30 59c-2-1-3-3-3-5V38c0-2 1-4 3-5l15-11c1-1 3-2 5-2z"/>
             </svg>
-            <div className="hidden sm:flex flex-col leading-none">
-              <span className="font-bold text-foreground text-xl tracking-wide">BITRIX</span>
-              <span className="text-xs text-muted-foreground tracking-widest">expert</span>
+            <div className="hidden sm:flex flex-col">
+              <span className="font-bold text-foreground text-lg leading-tight">BITRIX</span>
+              <span className="text-xs text-primary leading-tight">expert</span>
             </div>
           </a>
 
