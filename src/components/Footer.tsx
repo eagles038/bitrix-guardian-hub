@@ -1,11 +1,5 @@
 import { MessageCircle, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-
-// Import badge images
-import badgeQuality from "@/assets/badges/badge-quality.svg";
-import badgeComposite from "@/assets/badges/badge-composite.svg";
-import badge1c from "@/assets/badges/badge-1c.svg";
-import partnerBadge from "@/assets/badges/partner-badge.webp";
 import bitrixLogo from "@/assets/bitrix-logo-transparent.png";
 
 const Footer = () => {
@@ -13,88 +7,6 @@ const Footer = () => {
   
   return (
     <footer className="border-t border-glass-border">
-      {/* Competencies & Bitrix Powered Section */}
-      <div className="py-8 bg-secondary/20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            {/* Competencies - Left */}
-            <div className="flex flex-col items-center lg:items-start gap-3">
-              <h3 className="text-sm font-semibold text-foreground">
-                Подтверждённые компетенции
-              </h3>
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                <a 
-                  href="https://marketplace.1c-bitrix.ru/partners/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img 
-                    src={partnerBadge} 
-                    alt="Сертифицированный партнер 1С-Битрикс" 
-                    className="h-14 w-auto"
-                  />
-                </a>
-                <a 
-                  href="https://www.1c-bitrix.ru/partners/competences.php" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img 
-                    src={badgeQuality} 
-                    alt="Компетенция Качество внедрений" 
-                    className="h-10 w-auto"
-                  />
-                </a>
-                <a 
-                  href="https://www.1c-bitrix.ru/products/cms/modules/compozit/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img 
-                    src={badgeComposite} 
-                    alt="Компетенция Композитный сайт" 
-                    className="h-10 w-auto"
-                  />
-                </a>
-                <a 
-                  href="https://www.1c-bitrix.ru/products/cms/modules/1c-integration/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img 
-                    src={badge1c} 
-                    alt="Компетенция Интеграция с 1С" 
-                    className="h-10 w-auto"
-                  />
-                </a>
-              </div>
-            </div>
-
-            {/* Bitrix Powered - Right */}
-            <a 
-              href="https://www.1c-bitrix.ru/products/cms/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <img 
-                src={bitrixLogo} 
-                alt="1С-Битрикс" 
-                className="h-10 w-auto"
-              />
-              <span className="text-sm">
-                Работает на{" "}
-                <span className="font-medium text-foreground">«1С-Битрикс: Управление сайтом»</span>
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer */}
       <div className="py-12">
         <div className="container mx-auto px-4">
@@ -168,6 +80,28 @@ const Footer = () => {
               © 2010–{currentYear} BitrixPro — Разработка на 1С-Битрикс
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Bitrix Powered - Bottom */}
+      <div className="py-3 bg-secondary/50 border-t border-glass-border">
+        <div className="container mx-auto px-4">
+          <a 
+            href="https://www.1c-bitrix.ru/products/cms/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <img 
+              src={bitrixLogo} 
+              alt="1С-Битрикс" 
+              className="h-8 w-auto"
+            />
+            <span className="text-sm">
+              Работает на{" "}
+              <span className="font-medium text-foreground">«1С-Битрикс: Управление сайтом»</span>
+            </span>
+          </a>
         </div>
       </div>
     </footer>
