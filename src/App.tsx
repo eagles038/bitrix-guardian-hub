@@ -9,6 +9,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contacts from "./pages/Contacts";
 import BitrixEditions from "./pages/BitrixEditions";
+import PortfolioDetail from "./pages/PortfolioDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/bitrix-editions" element={<BitrixEditions />} />
+          <Route path="/portfolio/:slug" element={<PortfolioDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
