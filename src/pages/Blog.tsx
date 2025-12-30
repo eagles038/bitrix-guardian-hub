@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Search, Eye, ArrowRight, Calendar, Tag, ChevronLeft, ChevronRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -345,50 +346,51 @@ const Blog = () => {
               <>
                 <div className="grid gap-6">
                   {currentPosts.map((post, index) => (
-                    <motion.article
-                      key={post.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="glass-card-hover p-6 group cursor-pointer"
-                    >
-                      <div className="flex flex-col md:flex-row md:items-start gap-4">
-                        <div className="flex-1">
-                          <div className="flex flex-wrap items-center gap-3 mb-3">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                              <Tag className="w-3.5 h-3.5" />
-                              {post.category}
-                            </span>
-                            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-                              <Calendar className="w-3.5 h-3.5" />
-                              {formatDate(post.date)}
-                            </span>
-                            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-                              <Eye className="w-3.5 h-3.5" />
-                              {formatViews(post.views)} просмотров
-                            </span>
+                    <Link key={post.id} to={`/blog/${post.slug}`}>
+                      <motion.article
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        className="glass-card-hover p-6 group cursor-pointer"
+                      >
+                        <div className="flex flex-col md:flex-row md:items-start gap-4">
+                          <div className="flex-1">
+                            <div className="flex flex-wrap items-center gap-3 mb-3">
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                                <Tag className="w-3.5 h-3.5" />
+                                {post.category}
+                              </span>
+                              <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                                <Calendar className="w-3.5 h-3.5" />
+                                {formatDate(post.date)}
+                              </span>
+                              <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                                <Eye className="w-3.5 h-3.5" />
+                                {formatViews(post.views)} просмотров
+                              </span>
+                            </div>
+                            
+                            <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                              {post.title}
+                            </h2>
+                            
+                            <p className="text-muted-foreground leading-relaxed">
+                              {post.excerpt}
+                            </p>
                           </div>
                           
-                          <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                            {post.title}
-                          </h2>
-                          
-                          <p className="text-muted-foreground leading-relaxed">
-                            {post.excerpt}
-                          </p>
+                          <div className="flex items-center md:self-center">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="w-12 h-12 rounded-full border border-glass-border group-hover:border-primary group-hover:bg-primary/10 transition-all"
+                            >
+                              <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                            </Button>
+                          </div>
                         </div>
-                        
-                        <div className="flex items-center md:self-center">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="w-12 h-12 rounded-full border border-glass-border group-hover:border-primary group-hover:bg-primary/10 transition-all"
-                          >
-                            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                          </Button>
-                        </div>
-                      </div>
-                    </motion.article>
+                      </motion.article>
+                    </Link>
                   ))}
                 </div>
 
