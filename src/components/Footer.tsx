@@ -6,7 +6,7 @@ import badgeQuality from "@/assets/badges/badge-quality.svg";
 import badgeComposite from "@/assets/badges/badge-composite.svg";
 import badge1c from "@/assets/badges/badge-1c.svg";
 import partnerBadge from "@/assets/badges/partner-badge.webp";
-import bitrixLogo from "@/assets/1c-bitrix-logo.png";
+import bitrixLogo from "@/assets/bitrix-logo-transparent.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
