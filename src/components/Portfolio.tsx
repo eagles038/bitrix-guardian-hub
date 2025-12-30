@@ -1,26 +1,31 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
+    slug: "internet-magazin-elektroniki",
     title: "Интернет-магазин электроники",
     description: "Highload-каталог на 50 000 товаров с интеграцией 1С",
     tags: ["D7", "Highload", "1С", "REST API"],
     image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&h=400&fit=crop",
   },
   {
+    slug: "b2b-portal-stroitelnoy-kompanii",
     title: "B2B-портал строительной компании",
     description: "Личный кабинет дилера с синхронизацией остатков",
     tags: ["Композит", "CRM", "B2B"],
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
   },
   {
+    slug: "korporativniy-sayt-logistiki",
     title: "Корпоративный сайт логистики",
     description: "Многоязычный сайт с калькулятором доставки",
     tags: ["Мультисайт", "API", "i18n"],
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
   },
   {
+    slug: "marketpleys-uslug",
     title: "Маркетплейс услуг",
     description: "Кастомный модуль бронирования и оплаты",
     tags: ["Модуль", "Эквайринг", "СМС"],
@@ -51,15 +56,18 @@ const Portfolio = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <motion.a
-              key={project.title}
-              href="#contact"
+            <motion.div
+              key={project.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group glass-card-hover overflow-hidden block"
+              className="group"
             >
+              <Link
+                to={`/portfolio/${project.slug}`}
+                className="glass-card-hover overflow-hidden block"
+              >
               {/* Image */}
               <div className="relative h-48 md:h-56 overflow-hidden">
                 <img
@@ -96,7 +104,8 @@ const Portfolio = () => {
                   ))}
                 </div>
               </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
