@@ -4,6 +4,23 @@ import { ArrowLeft, Eye, Calendar, Tag, Clock, Share2, BookOpen, ChevronRight } 
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useEffect, useRef } from "react";
+import hljs from "highlight.js/lib/core";
+import php from "highlight.js/lib/languages/php";
+import sql from "highlight.js/lib/languages/sql";
+import bash from "highlight.js/lib/languages/bash";
+import apache from "highlight.js/lib/languages/apache";
+import javascript from "highlight.js/lib/languages/javascript";
+import typescript from "highlight.js/lib/languages/typescript";
+import "highlight.js/styles/atom-one-dark.css";
+
+// Регистрация языков
+hljs.registerLanguage("php", php);
+hljs.registerLanguage("sql", sql);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("apache", apache);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("typescript", typescript);
 
 interface BlogPostData {
   id: number;
@@ -17,26 +34,39 @@ interface BlogPostData {
   content: React.ReactNode;
 }
 
-const CodeBlock = ({ children, language = "typescript" }: { children: string; language?: string }) => (
-  <div className="relative my-6 group">
-    <div className="absolute top-0 left-0 right-0 h-10 bg-secondary/80 rounded-t-lg flex items-center justify-between px-4">
-      <span className="text-xs text-muted-foreground font-mono">{language}</span>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground"
-        onClick={() => navigator.clipboard.writeText(children)}
-      >
-        Копировать
-      </Button>
+const CodeBlock = ({ children, language = "typescript" }: { children: string; language?: string }) => {
+  const codeRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (codeRef.current) {
+      hljs.highlightElement(codeRef.current);
+    }
+  }, [children]);
+
+  return (
+    <div className="relative my-6 group">
+      <div className="absolute top-0 left-0 right-0 h-10 bg-secondary/80 rounded-t-lg flex items-center justify-between px-4 z-10">
+        <span className="text-xs text-muted-foreground font-mono">{language}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground"
+          onClick={() => navigator.clipboard.writeText(children)}
+        >
+          Копировать
+        </Button>
+      </div>
+      <pre className="!bg-[#282c34] rounded-lg pt-12 pb-4 px-4 overflow-x-auto border border-glass-border !m-0">
+        <code
+          ref={codeRef}
+          className={`language-${language} text-sm font-mono leading-relaxed whitespace-pre`}
+        >
+          {children}
+        </code>
+      </pre>
     </div>
-    <pre className="bg-secondary/50 rounded-lg pt-12 pb-4 px-4 overflow-x-auto border border-glass-border">
-      <code className="text-sm font-mono text-foreground/90 leading-relaxed whitespace-pre">
-        {children}
-      </code>
-    </pre>
-  </div>
-);
+  );
+};
 
 const InlineCode = ({ children }: { children: React.ReactNode }) => (
   <code className="px-1.5 py-0.5 bg-secondary/70 rounded text-primary font-mono text-sm">
