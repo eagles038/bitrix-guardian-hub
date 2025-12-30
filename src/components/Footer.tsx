@@ -1,11 +1,76 @@
 import { MessageCircle, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// Import badge images
+import badgeQuality from "@/assets/badges/badge-quality.svg";
+import badgeComposite from "@/assets/badges/badge-composite.svg";
+import badge1c from "@/assets/badges/badge-1c.svg";
+import partnerBadge from "@/assets/badges/partner-badge.webp";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
     <footer className="border-t border-glass-border">
+      {/* Competencies Section */}
+      <div className="py-10 bg-secondary/20">
+        <div className="container mx-auto px-4">
+          <h3 className="text-lg font-semibold text-center text-foreground mb-6">
+            Подтверждённые компетенции
+          </h3>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            <a 
+              href="https://marketplace.1c-bitrix.ru/partners/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img 
+                src={partnerBadge} 
+                alt="Сертифицированный партнер 1С-Битрикс" 
+                className="h-16 md:h-20 w-auto"
+              />
+            </a>
+            <a 
+              href="https://www.1c-bitrix.ru/partners/competences.php" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img 
+                src={badgeQuality} 
+                alt="Компетенция Качество внедрений" 
+                className="h-12 md:h-14 w-auto"
+              />
+            </a>
+            <a 
+              href="https://www.1c-bitrix.ru/products/cms/modules/compozit/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img 
+                src={badgeComposite} 
+                alt="Компетенция Композитный сайт" 
+                className="h-12 md:h-14 w-auto"
+              />
+            </a>
+            <a 
+              href="https://www.1c-bitrix.ru/products/cms/modules/1c-integration/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img 
+                src={badge1c} 
+                alt="Компетенция Интеграция с 1С" 
+                className="h-12 md:h-14 w-auto"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Main Footer */}
       <div className="py-12">
         <div className="container mx-auto px-4">
@@ -48,6 +113,29 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Bitrix Powered Section */}
+      <div className="py-4 border-t border-glass-border bg-secondary/20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3">
+            <a 
+              href="https://www.1c-bitrix.ru/products/cms/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {/* Bitrix Logo SVG */}
+              <svg width="24" height="24" viewBox="0 0 24 24" className="text-[#c32865]">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              <span className="text-sm">
+                Работает на{" "}
+                <span className="font-medium text-foreground">«1С-Битрикс: Управление сайтом»</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Copyright Bar */}
       <div className="py-4 border-t border-glass-border bg-secondary/30">
         <div className="container mx-auto px-4">
@@ -64,6 +152,12 @@ const Footer = () => {
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Блог
+              </Link>
+              <Link 
+                to="/bitrix-editions" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Редакции 1С-Битрикс
               </Link>
               <span className="text-muted-foreground">
                 ИП Иванов И.И. | ИНН: 123456789012
