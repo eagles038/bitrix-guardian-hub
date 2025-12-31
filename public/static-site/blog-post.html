@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Оптимизация производительности сайта на 1С-Битрикс: кеширование, оптимизация БД, сжатие файлов и настройка серверного окружения.">
+  <meta name="keywords" content="1С-Битрикс, оптимизация, производительность, кеширование, база данных">
+  <title>Оптимизация производительности сайта на 1С-Битрикс — BitrixPro</title>
+  
+  <link rel="canonical" href="https://bitrixpro.ru/blog/optimizaciya-proizvoditelnosti">
+  
+  <meta property="og:title" content="Оптимизация производительности сайта на 1С-Битрикс">
+  <meta property="og:description" content="Полное руководство по ускорению работы сайта на Битрикс.">
+  <meta property="og:type" content="article">
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/blog-post.css">
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__container">
+      <a href="index.html" class="header__logo">
+        <svg class="header__logo-icon" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M50 5c-5 0-10 2-14 5L15 25c-4 3-7 8-7 14v22c0 6 3 11 7 14l21 15c4 3 9 5 14 5s10-2 14-5l21-15c4-3 7-8 7-14V39c0-6-3-11-7-14L64 10c-4-3-9-5-14-5zm0 15c2 0 4 1 5 2l15 11c2 1 3 3 3 5v16c0 2-1 4-3 5L55 70c-1 1-3 2-5 2s-4-1-5-2L30 59c-2-1-3-3-3-5V38c0-2 1-4 3-5l15-11c1-1 3-2 5-2z"/>
+        </svg>
+        <div class="header__logo-text">
+          <span class="header__logo-name">BITRIX</span>
+          <span class="header__logo-tagline">expert</span>
+        </div>
+      </a>
+
+      <nav class="header__nav">
+        <a href="index.html#services" class="header__nav-link">Услуги</a>
+        <a href="index.html#pricing" class="header__nav-link">Тарифы</a>
+        <a href="index.html#portfolio" class="header__nav-link">Портфолио</a>
+        <a href="blog.html" class="header__nav-link header__nav-link--active">Блог</a>
+        <a href="contacts.html" class="header__nav-link">Контакты</a>
+      </nav>
+
+      <div class="header__cta">
+        <a href="contacts.html" class="btn btn--primary">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Быстрый аудит
+        </a>
+      </div>
+
+      <button class="header__menu-btn" aria-label="Меню">
+        <svg class="header__menu-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="header__mobile-nav">
+      <a href="index.html#services" class="header__mobile-link">Услуги</a>
+      <a href="index.html#pricing" class="header__mobile-link">Тарифы</a>
+      <a href="index.html#portfolio" class="header__mobile-link">Портфолио</a>
+      <a href="blog.html" class="header__mobile-link">Блог</a>
+      <a href="contacts.html" class="header__mobile-link">Контакты</a>
+    </nav>
+  </header>
+
+  <main class="blog-post-page">
+    <!-- Breadcrumb -->
+    <div class="container">
+      <nav class="breadcrumb" data-animate>
+        <a href="index.html" class="breadcrumb__link">Главная</a>
+        <span class="breadcrumb__separator">/</span>
+        <a href="blog.html" class="breadcrumb__link">Блог</a>
+        <span class="breadcrumb__separator">/</span>
+        <span class="breadcrumb__current">Оптимизация производительности</span>
+      </nav>
+    </div>
+
+    <!-- Article Header -->
+    <article class="article">
+      <div class="container">
+        <header class="article__header" data-animate>
+          <a href="blog.html" class="article__back">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Назад к статьям
+          </a>
+
+          <div class="article__meta">
+            <span class="article__category">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+              Производительность
+            </span>
+            <span class="article__date">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              28 декабря 2024
+            </span>
+            <span class="article__views">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              2 847 просмотров
+            </span>
+            <span class="article__read-time">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              12 мин чтения
+            </span>
+          </div>
+
+          <h1 class="article__title">Оптимизация производительности сайта на 1С-Битрикс: полное руководство</h1>
+        </header>
+
+        <!-- Article Content -->
+        <div class="article__content glass-card" data-animate data-animate-delay="100">
+          <p class="article__lead">
+            Производительность сайта — один из ключевых факторов, влияющих на конверсию и позиции в поисковой выдаче. В этой статье разберём основные методы оптимизации сайтов на платформе 1С-Битрикс.
+          </p>
+
+          <h2>Настройка кеширования компонентов</h2>
+          
+          <p>
+            Правильная настройка кеширования — основа производительности любого сайта на Битрикс. Рассмотрим основные параметры компонента каталога:
+          </p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">php</span>
+              <button class="code-block__copy" onclick="copyCode(this)">Копировать</button>
+            </div>
+            <pre class="code-block__code"><code>&lt;?php
+// Настройка кеширования в компоненте каталога
+$APPLICATION-&gt;IncludeComponent(
+    "bitrix:catalog.section",
+    "custom_template",
+    array(
+        "IBLOCK_ID" =&gt; CATALOG_IBLOCK_ID,
+        "SECTION_ID" =&gt; $arResult["ID"],
+        
+        // Настройки кеширования
+        "CACHE_TYPE" =&gt; "A",           // Авто-кеширование
+        "CACHE_TIME" =&gt; 36000000,      // Время жизни кеша в секундах
+        "CACHE_GROUPS" =&gt; "N",         // Не разделять по группам пользователей
+        
+        // Важно для производительности
+        "SET_BROWSER_TITLE" =&gt; "Y",
+        "SET_META_KEYWORDS" =&gt; "Y",
+        "SET_META_DESCRIPTION" =&gt; "Y",
+    )
+);</code></pre>
+          </div>
+
+          <blockquote class="article__blockquote">
+            <strong>Важно:</strong> параметр <code>CACHE_GROUPS</code> следует устанавливать в "N" только если контент одинаков для всех групп пользователей. В противном случае кеш будет создаваться отдельно для каждой группы.
+          </blockquote>
+
+          <h2>Оптимизация запросов к базе данных</h2>
+
+          <p>
+            Избыточные запросы к БД — частая причина медленной работы сайта. Используйте <code>arSelect</code> для выборки только необходимых полей:
+          </p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">php</span>
+              <button class="code-block__copy" onclick="copyCode(this)">Копировать</button>
+            </div>
+            <pre class="code-block__code"><code>&lt;?php
+// Неоптимальный запрос - выбираем все поля
+$rsElements = CIBlockElement::GetList(
+    ["SORT" =&gt; "ASC"],
+    ["IBLOCK_ID" =&gt; 4, "ACTIVE" =&gt; "Y"],
+    false,
+    false,
+    [] // Выбираются ВСЕ поля
+);
+
+// Оптимизированный запрос - только нужные поля
+$rsElements = CIBlockElement::GetList(
+    ["SORT" =&gt; "ASC"],
+    ["IBLOCK_ID" =&gt; 4, "ACTIVE" =&gt; "Y"],
+    false,
+    ["nPageSize" =&gt; 20], // Ограничение выборки
+    ["ID", "NAME", "DETAIL_PAGE_URL", "PREVIEW_PICTURE"]
+);</code></pre>
+          </div>
+
+          <h3>Использование индексов</h3>
+
+          <p>
+            Проверьте наличие индексов на часто используемых полях. Для анализа запросов используйте встроенный профайлер:
+          </p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">sql</span>
+              <button class="code-block__copy" onclick="copyCode(this)">Копировать</button>
+            </div>
+            <pre class="code-block__code"><code>-- Добавление индекса на поле сортировки
+ALTER TABLE b_iblock_element 
+ADD INDEX ix_iblock_sort (IBLOCK_ID, ACTIVE, SORT);
+
+-- Проверка использования индексов
+EXPLAIN SELECT * FROM b_iblock_element 
+WHERE IBLOCK_ID = 4 AND ACTIVE = 'Y' 
+ORDER BY SORT ASC;</code></pre>
+          </div>
+
+          <h2>Сжатие и оптимизация файлов</h2>
+
+          <p>
+            Настройте gzip-сжатие и минификацию статических файлов через <code>.htaccess</code>:
+          </p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">apache</span>
+              <button class="code-block__copy" onclick="copyCode(this)">Копировать</button>
+            </div>
+            <pre class="code-block__code"><code># Включение gzip-сжатия
+&lt;IfModule mod_deflate.c&gt;
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+&lt;/IfModule&gt;
+
+# Кеширование статических файлов
+&lt;IfModule mod_expires.c&gt;
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+&lt;/IfModule&gt;</code></pre>
+          </div>
+
+          <h2>Мониторинг производительности</h2>
+
+          <p>
+            Используйте встроенные инструменты Битрикс для отслеживания производительности. Включите отладку в <code>/bitrix/.settings.php</code>:
+          </p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">php</span>
+              <button class="code-block__copy" onclick="copyCode(this)">Копировать</button>
+            </div>
+            <pre class="code-block__code"><code>&lt;?php
+return [
+    'exception_handling' =&gt; [
+        'value' =&gt; [
+            'debug' =&gt; true,
+            'handled_errors_types' =&gt; E_ALL &amp; ~E_NOTICE &amp; ~E_STRICT,
+            'exception_errors_types' =&gt; E_ALL &amp; ~E_NOTICE &amp; ~E_WARNING,
+            'log' =&gt; [
+                'settings' =&gt; [
+                    'file' =&gt; 'bitrix/logs/error.log',
+                    'log_size' =&gt; 1000000,
+                ],
+            ],
+        ],
+    ],
+];</code></pre>
+          </div>
+
+          <ul class="article__list">
+            <li>Регулярно проверяйте время генерации страниц в административной панели</li>
+            <li>Используйте CDN для статических файлов при высоких нагрузках</li>
+            <li>Настройте OPcache для кеширования скомпилированного PHP-кода</li>
+            <li>Рассмотрите использование Redis или Memcached для сессий</li>
+          </ul>
+
+          <blockquote class="article__blockquote article__blockquote--success">
+            <strong>Результат:</strong> правильная настройка кеширования и оптимизация запросов позволяют сократить время загрузки страницы в 3-5 раз, что положительно влияет на поведенческие факторы и конверсию.
+          </blockquote>
+        </div>
+
+        <!-- Share & Related -->
+        <div class="article__footer" data-animate data-animate-delay="200">
+          <div class="article__share">
+            <span class="article__share-label">Поделиться:</span>
+            <div class="article__share-buttons">
+              <a href="#" class="article__share-btn" title="Telegram">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+              </a>
+              <a href="#" class="article__share-btn" title="VK">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.57 4 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.847 2.48 2.27 4.654 2.85 4.654.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.743c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg>
+              </a>
+              <button class="article__share-btn" title="Копировать ссылку" onclick="copyLink()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="article__cta glass-card">
+            <h3>Нужна помощь с оптимизацией?</h3>
+            <p>Проведу аудит производительности вашего сайта и предложу план оптимизации</p>
+            <a href="contacts.html" class="btn btn--primary">Заказать аудит</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <svg class="footer__logo-icon" viewBox="0 0 100 100" fill="currentColor">
+              <path d="M50 5c-5 0-10 2-14 5L15 25c-4 3-7 8-7 14v22c0 6 3 11 7 14l21 15c4 3 9 5 14 5s10-2 14-5l21-15c4-3 7-8 7-14V39c0-6-3-11-7-14L64 10c-4-3-9-5-14-5zm0 15c2 0 4 1 5 2l15 11c2 1 3 3 3 5v16c0 2-1 4-3 5L55 70c-1 1-3 2-5 2s-4-1-5-2L30 59c-2-1-3-3-3-5V38c0-2 1-4 3-5l15-11c1-1 3-2 5-2z"/>
+            </svg>
+            <span>BITRIX expert</span>
+          </a>
+          <p class="footer__description">
+            Профессиональная разработка и поддержка сайтов на 1С-Битрикс с 2014 года
+          </p>
+        </div>
+
+        <div class="footer__links">
+          <h4 class="footer__title">Навигация</h4>
+          <a href="index.html#services">Услуги</a>
+          <a href="index.html#pricing">Тарифы</a>
+          <a href="index.html#portfolio">Портфолио</a>
+          <a href="blog.html">Блог</a>
+        </div>
+
+        <div class="footer__links">
+          <h4 class="footer__title">Услуги</h4>
+          <a href="ecommerce.html">Интернет-магазины</a>
+          <a href="bitrix-editions.html">Редакции Битрикс</a>
+          <a href="contacts.html">Контакты</a>
+        </div>
+
+        <div class="footer__contact">
+          <h4 class="footer__title">Контакты</h4>
+          <a href="mailto:hello@bitrixpro.ru">hello@bitrixpro.ru</a>
+          <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+          <a href="https://t.me/bitrixpro" target="_blank">@bitrixpro</a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2024 BitrixPro. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/blog-post.js"></script>
+</body>
+</html>
