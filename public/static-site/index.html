@@ -29,9 +29,49 @@
   <meta name="twitter:description" content="Профессиональная разработка и поддержка сайтов на 1С-Битрикс. 10+ лет опыта, 200+ проектов.">
   <meta name="twitter:image" content="https://bitrixpro.ru/assets/images/og-image.jpg">
   
-  <!-- Styles -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: 'hsl(0 0% 0%)',
+            foreground: 'hsl(0 0% 100%)',
+            card: 'hsl(0 0% 5%)',
+            'card-foreground': 'hsl(0 0% 100%)',
+            primary: 'hsl(338 68% 47%)',
+            'primary-foreground': 'hsl(0 0% 100%)',
+            secondary: 'hsl(0 0% 12%)',
+            'secondary-foreground': 'hsl(0 0% 100%)',
+            muted: 'hsl(0 0% 12%)',
+            'muted-foreground': 'hsl(0 0% 65%)',
+            border: 'hsl(0 0% 18%)',
+            destructive: 'hsl(0 84% 60%)',
+            success: 'hsl(142 76% 36%)',
+            'glass-border': 'hsl(0 0% 20%)',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['SF Mono', 'Monaco', 'Cascadia Code', 'Consolas', 'monospace'],
+          },
+          borderRadius: {
+            DEFAULT: '1rem',
+            sm: '0.5rem',
+            lg: '1.5rem',
+            xl: '2rem',
+          },
+          boxShadow: {
+            glow: '0 0 60px rgba(193, 50, 107, 0.3)',
+            card: '0 4px 20px rgba(0, 0, 0, 0.3)',
+          },
+        },
+      },
+    }
+  </script>
+  
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/index.css">
   
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.ico">
@@ -149,34 +189,34 @@
   }
   </script>
 </head>
-<body>
+<body class="bg-background text-foreground min-h-screen">
   <!-- Header -->
-  <header class="header">
-    <div class="container header__container">
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between h-16 md:h-20">
       <!-- Logo -->
-      <a href="/" class="header__logo">
-        <svg class="header__logo-icon" viewBox="0 0 100 100" fill="currentColor">
+      <a href="/" class="flex items-center gap-3 group">
+        <svg class="w-10 h-10 text-foreground group-hover:text-primary transition-colors" viewBox="0 0 100 100" fill="currentColor">
           <path d="M50 5c-5 0-10 2-14 5L15 25c-4 3-7 8-7 14v22c0 6 3 11 7 14l21 15c4 3 9 5 14 5s10-2 14-5l21-15c4-3 7-8 7-14V39c0-6-3-11-7-14L64 10c-4-3-9-5-14-5zm0 15c2 0 4 1 5 2l15 11c2 1 3 3 3 5v16c0 2-1 4-3 5L55 70c-1 1-3 2-5 2s-4-1-5-2L30 59c-2-1-3-3-3-5V38c0-2 1-4 3-5l15-11c1-1 3-2 5-2z"/>
         </svg>
-        <div class="header__logo-text">
-          <span class="header__logo-name">BITRIX</span>
-          <span class="header__logo-tagline">expert</span>
+        <div class="hidden sm:flex flex-col">
+          <span class="font-bold text-lg leading-tight">BITRIX</span>
+          <span class="text-xs text-primary leading-tight">expert</span>
         </div>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="header__nav">
-        <a href="#services" class="header__nav-link">Услуги</a>
-        <a href="#pricing" class="header__nav-link">Тарифы</a>
-        <a href="#portfolio" class="header__nav-link">Портфолио</a>
-        <a href="#about" class="header__nav-link">Обо мне</a>
-        <a href="#contact" class="header__nav-link">Контакты</a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#services" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Услуги</a>
+        <a href="#pricing" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Тарифы</a>
+        <a href="#portfolio" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Портфолио</a>
+        <a href="#about" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Обо мне</a>
+        <a href="#contact" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Контакты</a>
       </nav>
 
       <!-- CTA Button -->
-      <div class="header__cta">
-        <a href="#contact" class="btn btn--primary">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div class="hidden md:block">
+        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-[1rem] font-medium text-sm hover:bg-primary/90 transition-all hover:shadow-glow">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
           </svg>
           Быстрый аудит
@@ -184,22 +224,22 @@
       </div>
 
       <!-- Mobile Menu Button -->
-      <button class="header__menu-btn" aria-label="Меню">
-        <svg class="header__menu-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <button class="md:hidden flex items-center justify-center w-10 h-10 text-foreground" id="mobile-menu-btn" aria-label="Меню">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
 
     <!-- Mobile Navigation -->
-    <nav class="header__mobile-nav">
-      <a href="#services" class="header__mobile-link">Услуги</a>
-      <a href="#pricing" class="header__mobile-link">Тарифы</a>
-      <a href="#portfolio" class="header__mobile-link">Портфолио</a>
-      <a href="#about" class="header__mobile-link">Обо мне</a>
-      <a href="#contact" class="header__mobile-link">Контакты</a>
-      <a href="#contact" class="btn btn--primary btn--lg">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <nav class="hidden md:hidden flex-col gap-4 p-4 border-t border-glass-border bg-card/95 backdrop-blur-xl" id="mobile-nav">
+      <a href="#services" class="py-2 text-muted-foreground hover:text-foreground transition-colors">Услуги</a>
+      <a href="#pricing" class="py-2 text-muted-foreground hover:text-foreground transition-colors">Тарифы</a>
+      <a href="#portfolio" class="py-2 text-muted-foreground hover:text-foreground transition-colors">Портфолио</a>
+      <a href="#about" class="py-2 text-muted-foreground hover:text-foreground transition-colors">Обо мне</a>
+      <a href="#contact" class="py-2 text-muted-foreground hover:text-foreground transition-colors">Контакты</a>
+      <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-[1rem] font-medium">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
         Быстрый аудит
@@ -209,146 +249,149 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero__background"></div>
-      <div class="hero__blur-1"></div>
-      <div class="hero__blur-2"></div>
-      <div class="hero__grid"></div>
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <!-- Background -->
+      <div class="absolute inset-0 bg-gradient-to-b from-background via-background to-card/30"></div>
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[60px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-[60px]"></div>
+      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
 
-      <div class="container hero__content">
+      <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
         <!-- Badge -->
-        <div class="glass-card hero__badge" data-animate>
-          <span class="hero__badge-dot"></span>
-          <span class="hero__badge-text">Сертифицированный партнер 1С-Битрикс</span>
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] mb-8" data-animate>
+          <span class="w-2 h-2 bg-primary rounded-full animate-pulse-custom"></span>
+          <span class="text-sm text-muted-foreground">Сертифицированный партнер 1С-Битрикс</span>
         </div>
 
         <!-- Title -->
-        <h1 class="hero__title" data-animate data-animate-delay="100">
-          Ваш <span class="hero__title-highlight">1С-Битрикс</span><br>
-          под надежной защитой<br class="hidden-mobile">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-animate data-animate-delay="100">
+          Ваш <span class="text-primary">1С-Битрикс</span><br>
+          под надежной защитой<br class="hidden md:block">
           и в развитии
         </h1>
 
         <!-- Subtitle -->
-        <p class="hero__subtitle" data-animate data-animate-delay="200">
+        <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8" data-animate data-animate-delay="200">
           10+ лет экспертизы в разработке и поддержке проектов на Битрикс.
           Работаю по SLA с гарантией времени реакции.
         </p>
 
         <!-- Stats -->
-        <div class="hero__stats" data-animate data-animate-delay="300">
-          <div class="hero__stat">
-            <svg class="hero__stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-10" data-animate data-animate-delay="300">
+          <div class="flex items-center gap-2 text-muted-foreground">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
             </svg>
-            <span><span class="hero__stat-value">200+</span> проектов</span>
+            <span><span class="font-semibold text-foreground">200+</span> проектов</span>
           </div>
-          <div class="hero__stat">
-            <svg class="hero__stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="flex items-center gap-2 text-muted-foreground">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <span>SLA <span class="hero__stat-value">от 2 часов</span></span>
+            <span>SLA <span class="font-semibold text-foreground">от 2 часов</span></span>
           </div>
         </div>
 
         <!-- CTA Buttons -->
-        <div class="hero__actions" data-animate data-animate-delay="400">
-          <a href="#services" class="btn btn--primary btn--xl">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center" data-animate data-animate-delay="400">
+          <a href="#services" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-[1rem] font-medium text-lg hover:bg-primary/90 transition-all hover:shadow-glow">
             Услуги
-            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
             </svg>
           </a>
-          <a href="#contact" class="btn btn--outline btn--xl">Заказать звонок</a>
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-foreground border border-glass-border rounded-[1rem] font-medium text-lg hover:bg-secondary hover:border-primary transition-all">
+            Заказать звонок
+          </a>
         </div>
       </div>
 
-      <div class="hero__gradient-bottom"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section">
-      <div class="container">
-        <div class="section__header" data-animate>
-          <h2 class="section__title">Услуги</h2>
-          <p class="section__description">Полный спектр услуг для вашего проекта на 1С-Битрикс</p>
+    <section id="services" class="py-24 relative">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+        <div class="text-center mb-16" data-animate>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Услуги</h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto">Полный спектр услуг для вашего проекта на 1С-Битрикс</p>
         </div>
 
-        <div class="services__grid">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <!-- Development -->
-          <div class="service-card glass-card glass-card--hover service-card--wide" data-animate data-animate-delay="100">
-            <div class="service-card__gradient service-card__gradient--blue"></div>
-            <div class="service-card__content">
-              <div class="service-card__icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="md:col-span-2 group relative overflow-hidden bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 md:p-8 transition-all duration-300 hover:bg-card/70 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="100">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-[1rem]"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                 </svg>
               </div>
-              <h3 class="service-card__title">Разработка</h3>
-              <p class="service-card__subtitle">D7, ORM, компоненты 2.0</p>
-              <ul class="service-card__features">
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Кастомные модули</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Highload-блоки</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>REST API</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Композитный сайт</li>
+              <h3 class="text-xl font-semibold mb-2">Разработка</h3>
+              <p class="font-mono text-sm text-primary mb-4">D7, ORM, компоненты 2.0</p>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Кастомные модули</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Highload-блоки</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>REST API</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Композитный сайт</li>
               </ul>
             </div>
           </div>
 
           <!-- Support -->
-          <div class="service-card glass-card glass-card--hover" data-animate data-animate-delay="200">
-            <div class="service-card__gradient service-card__gradient--green"></div>
-            <div class="service-card__content">
-              <div class="service-card__icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="group relative overflow-hidden bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 md:p-8 transition-all duration-300 hover:bg-card/70 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="200">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-[1rem]"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
                 </svg>
               </div>
-              <h3 class="service-card__title">Техподдержка</h3>
-              <p class="service-card__subtitle">Мониторинг, бэкапы, SLA</p>
-              <ul class="service-card__features">
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>24/7 мониторинг</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Ежедневные бэкапы</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Время реакции от 2ч</li>
+              <h3 class="text-xl font-semibold mb-2">Техподдержка</h3>
+              <p class="font-mono text-sm text-primary mb-4">Мониторинг, бэкапы, SLA</p>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>24/7 мониторинг</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Ежедневные бэкапы</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Время реакции от 2ч</li>
               </ul>
             </div>
           </div>
 
           <!-- Security -->
-          <div class="service-card glass-card glass-card--hover" data-animate data-animate-delay="300">
-            <div class="service-card__gradient service-card__gradient--red"></div>
-            <div class="service-card__content">
-              <div class="service-card__icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="group relative overflow-hidden bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 md:p-8 transition-all duration-300 hover:bg-card/70 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="300">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-[1rem]"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
               </div>
-              <h3 class="service-card__title">Безопасность</h3>
-              <p class="service-card__subtitle">Аудит и защита</p>
-              <ul class="service-card__features">
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Удаление вирусов</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Аудит безопасности</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>WAF настройка</li>
+              <h3 class="text-xl font-semibold mb-2">Безопасность</h3>
+              <p class="font-mono text-sm text-primary mb-4">Аудит и защита</p>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Удаление вирусов</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Аудит безопасности</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>WAF настройка</li>
               </ul>
             </div>
           </div>
 
           <!-- Integration -->
-          <div class="service-card glass-card glass-card--hover service-card--wide" data-animate data-animate-delay="400">
-            <div class="service-card__gradient service-card__gradient--purple"></div>
-            <div class="service-card__content">
-              <div class="service-card__icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="md:col-span-2 group relative overflow-hidden bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 md:p-8 transition-all duration-300 hover:bg-card/70 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="400">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-[1rem]"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
                 </svg>
               </div>
-              <h3 class="service-card__title">Интеграция</h3>
-              <p class="service-card__subtitle">1С, CRM, API</p>
-              <ul class="service-card__features">
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>1С:Предприятие</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>AmoCRM / Bitrix24</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Платежные системы</li>
-                <li class="service-card__feature"><span class="service-card__feature-dot"></span>Службы доставки</li>
+              <h3 class="text-xl font-semibold mb-2">Интеграция</h3>
+              <p class="font-mono text-sm text-primary mb-4">1С, CRM, API</p>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>1С:Предприятие</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>AmoCRM / Bitrix24</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Платежные системы</li>
+                <li class="flex items-center gap-2 text-sm text-muted-foreground"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>Службы доставки</li>
               </ul>
             </div>
           </div>
@@ -357,262 +400,207 @@
     </section>
 
     <!-- Certificates Section -->
-    <section class="certificates">
-      <div class="certificates__background"></div>
-      <div class="container">
-        <div class="section__header" data-animate>
-          <h2 class="section__title">Сертифицированный разработчик 1С-Битрикс</h2>
-          <p class="section__description">Сертификация подтверждает навыки и гарантию качества. Нажмите на сертификат для просмотра.</p>
+    <section class="py-16 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5"></div>
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+        <div class="text-center mb-8" data-animate>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Сертификаты</h2>
         </div>
-      </div>
 
-      <div class="certificates__scroll">
-        <div class="certificates__gradient-left"></div>
-        <div class="certificates__gradient-right"></div>
-        
-        <div class="certificates__track">
-          <!-- Certificate 1 -->
-          <div class="certificate-card" data-title="Разработчик Bitrix">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_developer.jpg" alt="Сертификат Разработчик Bitrix" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
-              </div>
-            </div>
-            <p class="certificate-card__title">Разработчик Bitrix</p>
-          </div>
+        <div class="relative py-4">
+          <!-- Gradient overlays -->
+          <div class="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+          <div class="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
           
-          <!-- Certificate 2 -->
-          <div class="certificate-card" data-title="Администратор Базовый">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_admin_basic.jpg" alt="Сертификат Администратор Базовый" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+          <!-- Certificates track -->
+          <div class="flex gap-4 md:gap-6 animate-scroll">
+            <!-- Certificate 1 -->
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_developer.jpg', 'Разработчик Bitrix Framework')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_developer.jpg" alt="Сертификат разработчика" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Разработчик</p>
             </div>
-            <p class="certificate-card__title">Администратор Базовый</p>
-          </div>
-          
-          <!-- Certificate 3 -->
-          <div class="certificate-card" data-title="Администратор Модули">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_admin_modules.jpg" alt="Сертификат Администратор Модули" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <!-- Certificate 2 -->
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_1c_integration.jpg', 'Интеграция с 1С')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_1c_integration.jpg" alt="Сертификат интеграции с 1С" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Интеграция 1С</p>
             </div>
-            <p class="certificate-card__title">Администратор Модули</p>
-          </div>
-          
-          <!-- Certificate 4 -->
-          <div class="certificate-card" data-title="Интеграция с 1С">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_1c_integration.jpg" alt="Сертификат Интеграция с 1С" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <!-- Certificate 3 -->
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_composite.jpg', 'Композитный сайт')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_composite.jpg" alt="Сертификат композитного сайта" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Композит</p>
             </div>
-            <p class="certificate-card__title">Интеграция с 1С</p>
-          </div>
-          
-          <!-- Certificate 5 -->
-          <div class="certificate-card" data-title="Композитный сайт">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_composite.jpg" alt="Сертификат Композитный сайт" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <!-- Certificate 4 -->
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_admin_basic.jpg', 'Администратор Базовый')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_admin_basic.jpg" alt="Сертификат администратора" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Админ базовый</p>
             </div>
-            <p class="certificate-card__title">Композитный сайт</p>
-          </div>
-          
-          <!-- Certificate 6 -->
-          <div class="certificate-card" data-title="Контент-менеджер">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_content_manager.jpg" alt="Сертификат Контент-менеджер" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <!-- Certificate 5 -->
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_admin_business.jpg', 'Администратор Бизнес')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_admin_business.jpg" alt="Сертификат администратора бизнес" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Админ бизнес</p>
             </div>
-            <p class="certificate-card__title">Контент-менеджер</p>
-          </div>
-          
-          <!-- Certificate 7 -->
-          <div class="certificate-card" data-title="Конфигурирование серверов">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_server_config.jpg" alt="Сертификат Конфигурирование серверов" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <!-- Certificate 6 -->
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_content_manager.jpg', 'Контент-менеджер')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_content_manager.jpg" alt="Сертификат контент-менеджера" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Контент</p>
             </div>
-            <p class="certificate-card__title">Конфигурирование серверов</p>
-          </div>
-          
-          <!-- Certificate 8 -->
-          <div class="certificate-card" data-title="Администратор Бизнес">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_admin_business.jpg" alt="Сертификат Администратор Бизнес" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+
+            <!-- Duplicate for infinite scroll -->
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_developer.jpg', 'Разработчик Bitrix Framework')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_developer.jpg" alt="Сертификат разработчика" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Разработчик</p>
             </div>
-            <p class="certificate-card__title">Администратор Бизнес</p>
-          </div>
-          
-          <!-- Duplicate for seamless loop -->
-          <div class="certificate-card" data-title="Разработчик Bitrix">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_developer.jpg" alt="Сертификат Разработчик Bitrix" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_1c_integration.jpg', 'Интеграция с 1С')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_1c_integration.jpg" alt="Сертификат интеграции с 1С" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Интеграция 1С</p>
             </div>
-            <p class="certificate-card__title">Разработчик Bitrix</p>
-          </div>
-          
-          <div class="certificate-card" data-title="Администратор Базовый">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_admin_basic.jpg" alt="Сертификат Администратор Базовый" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_composite.jpg', 'Композитный сайт')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_composite.jpg" alt="Сертификат композитного сайта" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Композит</p>
             </div>
-            <p class="certificate-card__title">Администратор Базовый</p>
-          </div>
-          
-          <div class="certificate-card" data-title="Администратор Модули">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_admin_modules.jpg" alt="Сертификат Администратор Модули" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_admin_basic.jpg', 'Администратор Базовый')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_admin_basic.jpg" alt="Сертификат администратора" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Админ базовый</p>
             </div>
-            <p class="certificate-card__title">Администратор Модули</p>
-          </div>
-          
-          <div class="certificate-card" data-title="Интеграция с 1С">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_1c_integration.jpg" alt="Сертификат Интеграция с 1С" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_admin_business.jpg', 'Администратор Бизнес')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_admin_business.jpg" alt="Сертификат администратора бизнес" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Админ бизнес</p>
             </div>
-            <p class="certificate-card__title">Интеграция с 1С</p>
-          </div>
-          
-          <div class="certificate-card" data-title="Композитный сайт">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_composite.jpg" alt="Сертификат Композитный сайт" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
+            
+            <div class="flex-shrink-0 w-36 md:w-44 cursor-pointer group" onclick="openCertificateModal('assets/images/certificates/cert_content_manager.jpg', 'Контент-менеджер')">
+              <div class="relative bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-xl" style="aspect-ratio: 3/4;">
+                <img src="assets/images/certificates/cert_content_manager.jpg" alt="Сертификат контент-менеджера" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-black/10 transition-all">
+                  <span class="text-xs font-medium text-white bg-black/50 px-2 py-1 rounded">Открыть</span>
+                </div>
               </div>
+              <p class="mt-2 text-xs md:text-sm text-center text-muted-foreground truncate">Контент</p>
             </div>
-            <p class="certificate-card__title">Композитный сайт</p>
-          </div>
-          
-          <div class="certificate-card" data-title="Контент-менеджер">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_content_manager.jpg" alt="Сертификат Контент-менеджер" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
-              </div>
-            </div>
-            <p class="certificate-card__title">Контент-менеджер</p>
-          </div>
-          
-          <div class="certificate-card" data-title="Конфигурирование серверов">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_server_config.jpg" alt="Сертификат Конфигурирование серверов" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
-              </div>
-            </div>
-            <p class="certificate-card__title">Конфигурирование серверов</p>
-          </div>
-          
-          <div class="certificate-card" data-title="Администратор Бизнес">
-            <div class="certificate-card__image">
-              <img src="assets/images/certificates/cert_admin_business.jpg" alt="Сертификат Администратор Бизнес" loading="lazy">
-              <div class="certificate-card__overlay">
-                <span class="certificate-card__view">Просмотреть</span>
-              </div>
-            </div>
-            <p class="certificate-card__title">Администратор Бизнес</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section section--alt">
-      <div class="container">
-        <div class="about__grid">
-          <!-- Left Content -->
+    <section id="about" class="py-24 relative">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           <div data-animate>
-            <h2 class="about__title">Обо мне</h2>
-            <p class="about__text">
-              Привет! Я — фрилансер с более чем 10-летним опытом работы с 
-              1С-Битрикс: Управление сайтом. За это время успешно реализовал 
-              более 200 проектов разной сложности — от небольших корпоративных 
-              сайтов до высоконагруженных интернет-магазинов.
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Обо мне</h2>
+            <p class="text-muted-foreground mb-6 leading-relaxed">
+              Более 10 лет работаю с платформой 1С-Битрикс. За это время реализовал более 200 проектов различной сложности — от корпоративных сайтов до высоконагруженных интернет-магазинов.
             </p>
-            <p class="about__text">
-              Специализируюсь на разработке с использованием D7 API, 
-              Highload-блоков, интеграциях с 1С и CRM-системами. 
-              Работаю по договору с фиксированными сроками и SLA.
+            <p class="text-muted-foreground mb-6 leading-relaxed">
+              Специализируюсь на сложных интеграциях с 1С, разработке кастомных модулей и оптимизации производительности. Работаю напрямую, без посредников — вы всегда знаете, кто отвечает за ваш проект.
             </p>
-
-            <div class="about__certs">
-              <span class="about__cert glass-card">
-                <svg class="about__cert-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            <div class="flex flex-wrap gap-3">
+              <span class="inline-flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] text-sm">
+                <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                Битрикс: Разработчик
+                Сертифицированный разработчик
               </span>
-              <span class="about__cert glass-card">
-                <svg class="about__cert-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+              <span class="inline-flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] text-sm">
+                <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                Битрикс: Администратор
-              </span>
-              <span class="about__cert glass-card">
-                <svg class="about__cert-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                </svg>
-                Битрикс: Интегратор
+                Партнер 1С-Битрикс
               </span>
             </div>
           </div>
 
-          <!-- Right Stats -->
-          <div class="about__stats" data-animate data-animate-delay="200">
-            <div class="about__stat glass-card">
-              <svg class="about__stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="grid grid-cols-2 gap-4" data-animate data-animate-delay="200">
+            <div class="bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 text-center hover:border-primary/30 transition-colors">
+              <svg class="w-8 h-8 text-primary mx-auto mb-3 transition-transform hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              <p class="about__stat-value">10+</p>
-              <p class="about__stat-label">Лет опыта</p>
+              <div class="text-3xl font-bold mb-1">10+</div>
+              <div class="text-sm text-muted-foreground">Лет опыта</div>
             </div>
-            <div class="about__stat glass-card">
-              <svg class="about__stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            <div class="bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 text-center hover:border-primary/30 transition-colors">
+              <svg class="w-8 h-8 text-primary mx-auto mb-3 transition-transform hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
               </svg>
-              <p class="about__stat-value">200+</p>
-              <p class="about__stat-label">Проектов</p>
+              <div class="text-3xl font-bold mb-1">200+</div>
+              <div class="text-sm text-muted-foreground">Проектов</div>
             </div>
-            <div class="about__stat glass-card">
-              <svg class="about__stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-              </svg>
-              <p class="about__stat-value">50K+</p>
-              <p class="about__stat-label">Часов кода</p>
-            </div>
-            <div class="about__stat glass-card">
-              <svg class="about__stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 text-center hover:border-primary/30 transition-colors">
+              <svg class="w-8 h-8 text-primary mx-auto mb-3 transition-transform hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
               </svg>
-              <p class="about__stat-value">5</p>
-              <p class="about__stat-label">Сертификатов</p>
+              <div class="text-3xl font-bold mb-1">8</div>
+              <div class="text-sm text-muted-foreground">Сертификатов</div>
+            </div>
+            <div class="bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 text-center hover:border-primary/30 transition-colors">
+              <svg class="w-8 h-8 text-primary mx-auto mb-3 transition-transform hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+              <div class="text-3xl font-bold mb-1">50+</div>
+              <div class="text-sm text-muted-foreground">Клиентов</div>
             </div>
           </div>
         </div>
@@ -620,266 +608,275 @@
     </section>
 
     <!-- Competencies Section -->
-    <section class="competencies">
-      <div class="competencies__background"></div>
-      <div class="container">
-        <div class="section__header" data-animate>
-          <h2 class="section__title">Подтверждённые компетенции</h2>
-        </div>
-
-        <div class="competencies__badges" data-animate data-animate-delay="200">
-          <a href="https://marketplace.1c-bitrix.ru/partners/" target="_blank" rel="noopener noreferrer" class="competencies__badge competencies__badge--large">
-            <img src="/assets/badges/partner-badge.webp" alt="Сертифицированный партнер 1С-Битрикс">
+    <section class="py-16 relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-muted/20 to-transparent"></div>
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative">
+        <div class="flex flex-wrap items-center justify-center gap-6" data-animate>
+          <a href="#" class="transition-all hover:opacity-80 hover:scale-105">
+            <img src="assets/images/badges/partner-badge.webp" alt="Партнер 1С-Битрикс" class="h-12 md:h-16 w-auto">
           </a>
-          <a href="https://www.1c-bitrix.ru/partners/competences.php" target="_blank" rel="noopener noreferrer" class="competencies__badge">
-            <img src="/assets/badges/badge-quality.svg" alt="Компетенция Качество внедрений">
+          <a href="#" class="transition-all hover:opacity-80 hover:scale-105">
+            <img src="assets/images/badges/badge-quality.svg" alt="Знак качества" class="h-12 w-auto">
           </a>
-          <a href="https://www.1c-bitrix.ru/products/cms/modules/compozit/" target="_blank" rel="noopener noreferrer" class="competencies__badge">
-            <img src="/assets/badges/badge-composite.svg" alt="Компетенция Композитный сайт">
+          <a href="#" class="transition-all hover:opacity-80 hover:scale-105">
+            <img src="assets/images/badges/badge-composite.svg" alt="Композитный сайт" class="h-12 w-auto">
           </a>
-          <a href="https://www.1c-bitrix.ru/products/cms/modules/1c-integration/" target="_blank" rel="noopener noreferrer" class="competencies__badge">
-            <img src="/assets/badges/badge-1c.svg" alt="Компетенция Интеграция с 1С">
+          <a href="#" class="transition-all hover:opacity-80 hover:scale-105">
+            <img src="assets/images/badges/badge-1c.svg" alt="Интеграция 1С" class="h-12 w-auto">
           </a>
         </div>
       </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="section section--alt">
-      <div class="container">
-        <div class="section__header" data-animate>
-          <h2 class="section__title">Тарифы поддержки</h2>
-          <p class="section__description">Выберите подходящий тариф или закажите индивидуальный расчет</p>
+    <section id="pricing" class="py-24 relative">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+        <div class="text-center mb-16" data-animate>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Тарифы поддержки</h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto">Выберите подходящий тариф для вашего проекта</p>
         </div>
 
-        <div class="pricing__grid">
-          <!-- Mini -->
-          <div class="pricing-card glass-card" data-animate data-animate-delay="100">
-            <h3 class="pricing-card__name">Мини</h3>
-            <div class="pricing-card__price">
-              <span class="pricing-card__price-value">15 000</span>
-              <span class="pricing-card__price-period"> ₽/мес</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <!-- Starter -->
+          <div class="bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 md:p-8" data-animate data-animate-delay="100">
+            <h3 class="text-xl font-semibold mb-2">Старт</h3>
+            <div class="mb-6">
+              <span class="text-4xl font-bold">15 000 ₽</span>
+              <span class="text-muted-foreground">/мес</span>
             </div>
-            <div class="pricing-card__info">
+            <div class="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-xl mb-6">
               <div>
-                <p class="pricing-card__info-label">Часы</p>
-                <p class="pricing-card__info-value">5 часов</p>
+                <div class="font-mono text-xs text-muted-foreground uppercase tracking-wider">SLA</div>
+                <div class="text-lg font-semibold">8 часов</div>
               </div>
               <div>
-                <p class="pricing-card__info-label">Реакция</p>
-                <p class="pricing-card__info-value">24 часа</p>
+                <div class="font-mono text-xs text-muted-foreground uppercase tracking-wider">Часы</div>
+                <div class="text-lg font-semibold">5 ч</div>
               </div>
             </div>
-            <ul class="pricing-card__features">
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Консультации по Битрикс
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Мониторинг работоспособности
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Мелкие правки
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Резервное копирование
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Email поддержка
-              </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Ежемесячный отчет
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Консультации по работе
               </li>
             </ul>
-            <a href="#contact" class="btn btn--outline btn--full btn--lg">Выбрать</a>
+            <a href="#contact" class="block w-full text-center px-6 py-3 bg-transparent border border-glass-border rounded-[1rem] font-medium hover:bg-secondary hover:border-primary transition-all">
+              Выбрать
+            </a>
           </div>
 
-          <!-- Standard (Popular) -->
-          <div class="pricing-card pricing-card--popular glass-card" data-animate data-animate-delay="200">
-            <span class="pricing-card__badge">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+          <!-- Business -->
+          <div class="bg-card/50 backdrop-blur-xl border border-primary/50 rounded-[1rem] p-6 md:p-8 shadow-glow relative" data-animate data-animate-delay="200">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
               Популярный
             </span>
-            <h3 class="pricing-card__name">Стандарт</h3>
-            <div class="pricing-card__price">
-              <span class="pricing-card__price-value">35 000</span>
-              <span class="pricing-card__price-period"> ₽/мес</span>
+            <h3 class="text-xl font-semibold mb-2">Бизнес</h3>
+            <div class="mb-6">
+              <span class="text-4xl font-bold">30 000 ₽</span>
+              <span class="text-muted-foreground">/мес</span>
             </div>
-            <div class="pricing-card__info">
+            <div class="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-xl mb-6">
               <div>
-                <p class="pricing-card__info-label">Часы</p>
-                <p class="pricing-card__info-value">15 часов</p>
+                <div class="font-mono text-xs text-muted-foreground uppercase tracking-wider">SLA</div>
+                <div class="text-lg font-semibold">4 часа</div>
               </div>
               <div>
-                <p class="pricing-card__info-label">Реакция</p>
-                <p class="pricing-card__info-value">4 часа</p>
+                <div class="font-mono text-xs text-muted-foreground uppercase tracking-wider">Часы</div>
+                <div class="text-lg font-semibold">12 ч</div>
               </div>
             </div>
-            <ul class="pricing-card__features">
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Все из тарифа Мини
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Всё из тарифа «Старт»
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Доработки функционала
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Приоритетные исправления
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Мониторинг сайта
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Ежемесячный отчёт
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Еженедельные бэкапы
-              </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Приоритетная поддержка
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Мелкие доработки
               </li>
             </ul>
-            <a href="#contact" class="btn btn--primary btn--full btn--lg">Выбрать</a>
+            <a href="#contact" class="block w-full text-center px-6 py-3 bg-primary text-primary-foreground rounded-[1rem] font-medium hover:bg-primary/90 transition-all hover:shadow-glow">
+              Выбрать
+            </a>
           </div>
 
-          <!-- VIP -->
-          <div class="pricing-card glass-card" data-animate data-animate-delay="300">
-            <h3 class="pricing-card__name">VIP</h3>
-            <div class="pricing-card__price">
-              <span class="pricing-card__price-value">75 000</span>
-              <span class="pricing-card__price-period"> ₽/мес</span>
+          <!-- Enterprise -->
+          <div class="bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 md:p-8" data-animate data-animate-delay="300">
+            <h3 class="text-xl font-semibold mb-2">Премиум</h3>
+            <div class="mb-6">
+              <span class="text-4xl font-bold">60 000 ₽</span>
+              <span class="text-muted-foreground">/мес</span>
             </div>
-            <div class="pricing-card__info">
+            <div class="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-xl mb-6">
               <div>
-                <p class="pricing-card__info-label">Часы</p>
-                <p class="pricing-card__info-value">40 часов</p>
+                <div class="font-mono text-xs text-muted-foreground uppercase tracking-wider">SLA</div>
+                <div class="text-lg font-semibold">2 часа</div>
               </div>
               <div>
-                <p class="pricing-card__info-label">Реакция</p>
-                <p class="pricing-card__info-value">2 часа</p>
+                <div class="font-mono text-xs text-muted-foreground uppercase tracking-wider">Часы</div>
+                <div class="text-lg font-semibold">30 ч</div>
               </div>
             </div>
-            <ul class="pricing-card__features">
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Все из тарифа Стандарт
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Всё из тарифа «Бизнес»
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Разработка новых модулей
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Выделенный менеджер
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
                 Аудит безопасности
               </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Ежедневные бэкапы
-              </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Персональный менеджер
-              </li>
-              <li class="pricing-card__feature">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                SLA договор
+              <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Оптимизация производительности
               </li>
             </ul>
-            <a href="#contact" class="btn btn--outline btn--full btn--lg">Выбрать</a>
+            <a href="#contact" class="block w-full text-center px-6 py-3 bg-transparent border border-glass-border rounded-[1rem] font-medium hover:bg-secondary hover:border-primary transition-all">
+              Выбрать
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section">
-      <div class="container">
-        <div class="section__header" data-animate>
-          <h2 class="section__title">Портфолио</h2>
-          <p class="section__description">Избранные проекты, реализованные за последние годы</p>
+    <section id="portfolio" class="py-24 relative bg-gradient-to-b from-transparent via-card/30 to-transparent">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+        <div class="text-center mb-16" data-animate>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Портфолио</h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto">Избранные проекты на 1С-Битрикс</p>
         </div>
 
-        <div class="portfolio__grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Project 1 -->
-          <a href="portfolio-internet-magazin-elektroniki.html" class="portfolio-card glass-card glass-card--hover" data-animate data-animate-delay="100">
-            <div class="portfolio-card__image">
-              <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&h=400&fit=crop" alt="Интернет-магазин электроники" loading="lazy">
-              <div class="portfolio-card__image-gradient"></div>
-              <div class="portfolio-card__link-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a href="portfolio-detail.html" class="group block bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="100">
+            <div class="relative h-48 md:h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format" alt="Интернет-магазин электроники" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent"></div>
+              <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-card/80 backdrop-blur-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
             </div>
-            <div class="portfolio-card__content">
-              <h3 class="portfolio-card__title">Интернет-магазин электроники</h3>
-              <p class="portfolio-card__description">Highload-каталог на 50 000 товаров с интеграцией 1С</p>
-              <div class="portfolio-card__tags">
-                <span class="portfolio-card__tag">D7</span>
-                <span class="portfolio-card__tag">Highload</span>
-                <span class="portfolio-card__tag">1С</span>
-                <span class="portfolio-card__tag">REST API</span>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">TechStore — Интернет-магазин</h3>
+              <p class="text-sm text-muted-foreground mb-4">Высоконагруженный интернет-магазин электроники с интеграцией 1С</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">1С-Битрикс</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">Интеграция 1С</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">Highload</span>
               </div>
             </div>
           </a>
 
           <!-- Project 2 -->
-          <a href="portfolio-b2b-portal.html" class="portfolio-card glass-card glass-card--hover" data-animate data-animate-delay="200">
-            <div class="portfolio-card__image">
-              <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="B2B-портал строительной компании" loading="lazy">
-              <div class="portfolio-card__image-gradient"></div>
-              <div class="portfolio-card__link-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a href="portfolio-detail.html" class="group block bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="200">
+            <div class="relative h-48 md:h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format" alt="Корпоративный портал" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent"></div>
+              <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-card/80 backdrop-blur-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
             </div>
-            <div class="portfolio-card__content">
-              <h3 class="portfolio-card__title">B2B-портал строительной компании</h3>
-              <p class="portfolio-card__description">Личный кабинет дилера с синхронизацией остатков</p>
-              <div class="portfolio-card__tags">
-                <span class="portfolio-card__tag">Композит</span>
-                <span class="portfolio-card__tag">CRM</span>
-                <span class="portfolio-card__tag">B2B</span>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">СтройГрупп — Корпоративный портал</h3>
+              <p class="text-sm text-muted-foreground mb-4">Корпоративный сайт строительной компании с каталогом объектов</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">1С-Битрикс</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">Корпоратив</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">SEO</span>
               </div>
             </div>
           </a>
 
           <!-- Project 3 -->
-          <a href="portfolio-logistics.html" class="portfolio-card glass-card glass-card--hover" data-animate data-animate-delay="300">
-            <div class="portfolio-card__image">
-              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="Корпоративный сайт логистики" loading="lazy">
-              <div class="portfolio-card__image-gradient"></div>
-              <div class="portfolio-card__link-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a href="portfolio-detail.html" class="group block bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="300">
+            <div class="relative h-48 md:h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&auto=format" alt="Маркетплейс" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent"></div>
+              <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-card/80 backdrop-blur-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
             </div>
-            <div class="portfolio-card__content">
-              <h3 class="portfolio-card__title">Корпоративный сайт логистики</h3>
-              <p class="portfolio-card__description">Многоязычный сайт с калькулятором доставки</p>
-              <div class="portfolio-card__tags">
-                <span class="portfolio-card__tag">Мультисайт</span>
-                <span class="portfolio-card__tag">API</span>
-                <span class="portfolio-card__tag">i18n</span>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">FoodMarket — Маркетплейс</h3>
+              <p class="text-sm text-muted-foreground mb-4">Мультивендорный маркетплейс продуктов питания с доставкой</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">1С-Битрикс</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">Маркетплейс</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">API</span>
               </div>
             </div>
           </a>
 
           <!-- Project 4 -->
-          <a href="portfolio-marketplace.html" class="portfolio-card glass-card glass-card--hover" data-animate data-animate-delay="400">
-            <div class="portfolio-card__image">
-              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Маркетплейс услуг" loading="lazy">
-              <div class="portfolio-card__image-gradient"></div>
-              <div class="portfolio-card__link-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a href="portfolio-detail.html" class="group block bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-glow" data-animate data-animate-delay="400">
+            <div class="relative h-48 md:h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format" alt="Интернет-магазин одежды" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent"></div>
+              <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-card/80 backdrop-blur-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </div>
             </div>
-            <div class="portfolio-card__content">
-              <h3 class="portfolio-card__title">Маркетплейс услуг</h3>
-              <p class="portfolio-card__description">Кастомный модуль бронирования и оплаты</p>
-              <div class="portfolio-card__tags">
-                <span class="portfolio-card__tag">Модуль</span>
-                <span class="portfolio-card__tag">Эквайринг</span>
-                <span class="portfolio-card__tag">СМС</span>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">FashionBrand — Магазин одежды</h3>
+              <p class="text-sm text-muted-foreground mb-4">Премиальный интернет-магазин одежды с примеркой онлайн</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">1С-Битрикс</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">E-commerce</span>
+                <span class="font-mono text-xs px-2 py-1 bg-secondary rounded-lg text-muted-foreground">UX</span>
               </div>
             </div>
           </a>
@@ -888,110 +885,66 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="section section--alt">
-      <div class="container">
-        <div class="section__header" data-animate>
-          <h2 class="section__title"><span class="section__title-highlight">Отзывы</span> клиентов</h2>
-          <p class="section__description">
-            Все отзывы являются реальными и взяты с профиля на 
-            <a href="https://www.fl.ru/users/ruslan568/opinions/" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary);">fl.ru</a>
-          </p>
+    <section class="py-24 relative">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+        <div class="text-center mb-16" data-animate>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Отзывы клиентов</h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto">Что говорят о работе со мной</p>
         </div>
 
-        <div class="testimonials__carousel" data-animate data-animate-delay="200">
-          <div class="testimonials__track">
+        <div class="relative max-w-5xl mx-auto px-12">
+          <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide py-4" id="testimonials-track">
             <!-- Testimonial 1 -->
-            <div class="testimonial-card">
-              <svg class="testimonial-card__quote" fill="currentColor" viewBox="0 0 24 24">
+            <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)] snap-start p-6 bg-card/50 border border-border rounded-[1rem] hover:border-primary/50 transition-colors">
+              <svg class="w-8 h-8 text-primary mb-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
               </svg>
-              <p class="testimonial-card__text">"Отличный специалист! Все сделал в срок, дал рекомендации что в дальнейшем можно улучшить. Договорились уже о следующей задаче."</p>
-              <div class="testimonial-card__author">
-                <div class="testimonial-card__avatar">
-                  <span class="testimonial-card__avatar-letter">О</span>
+              <p class="text-muted-foreground mb-6 leading-relaxed">Отличная работа! Проект был выполнен в срок и с высоким качеством. Рекомендую всем, кто ищет надежного разработчика на Битрикс.</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <span class="text-primary font-semibold text-sm">АК</span>
                 </div>
-                <span class="testimonial-card__name">Ольга Буш</span>
+                <span class="font-medium">Алексей Козлов</span>
               </div>
             </div>
 
             <!-- Testimonial 2 -->
-            <div class="testimonial-card">
-              <svg class="testimonial-card__quote" fill="currentColor" viewBox="0 0 24 24">
+            <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)] snap-start p-6 bg-card/50 border border-border rounded-[1rem] hover:border-primary/50 transition-colors">
+              <svg class="w-8 h-8 text-primary mb-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
               </svg>
-              <p class="testimonial-card__text">"Человек вник в мою просьбу и старался помочь. Каждый день был на связи и показал высокий уровень навыков. Рекомендую."</p>
-              <div class="testimonial-card__author">
-                <div class="testimonial-card__avatar">
-                  <span class="testimonial-card__avatar-letter">S</span>
+              <p class="text-muted-foreground mb-6 leading-relaxed">Профессиональный подход к работе. Интеграция с 1С выполнена безупречно. Теперь наш склад синхронизирован с сайтом.</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <span class="text-primary font-semibold text-sm">МС</span>
                 </div>
-                <span class="testimonial-card__name">Slava Pro</span>
+                <span class="font-medium">Мария Соколова</span>
               </div>
             </div>
 
             <!-- Testimonial 3 -->
-            <div class="testimonial-card">
-              <svg class="testimonial-card__quote" fill="currentColor" viewBox="0 0 24 24">
+            <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)] snap-start p-6 bg-card/50 border border-border rounded-[1rem] hover:border-primary/50 transition-colors">
+              <svg class="w-8 h-8 text-primary mb-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
               </svg>
-              <p class="testimonial-card__text">"Со сложной задачей справился отлично, хороший исполнитель рекомендую."</p>
-              <div class="testimonial-card__author">
-                <div class="testimonial-card__avatar">
-                  <span class="testimonial-card__avatar-letter">А</span>
+              <p class="text-muted-foreground mb-6 leading-relaxed">Быстро решили все проблемы с безопасностью сайта. После аудита сайт стал работать значительно быстрее. Спасибо!</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <span class="text-primary font-semibold text-sm">ДП</span>
                 </div>
-                <span class="testimonial-card__name">Алексей Крепостнов</span>
-              </div>
-            </div>
-
-            <!-- Testimonial 4 -->
-            <div class="testimonial-card">
-              <svg class="testimonial-card__quote" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-              </svg>
-              <p class="testimonial-card__text">"Отличный исполнитель, быстро, качественно, недорого. Рекомендую."</p>
-              <div class="testimonial-card__author">
-                <div class="testimonial-card__avatar">
-                  <span class="testimonial-card__avatar-letter">Y</span>
-                </div>
-                <span class="testimonial-card__name">Yolkfolk</span>
-              </div>
-            </div>
-
-            <!-- Testimonial 5 -->
-            <div class="testimonial-card">
-              <svg class="testimonial-card__quote" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-              </svg>
-              <p class="testimonial-card__text">"Верстка выполнена достаточно быстро и качественно. Спасибо!"</p>
-              <div class="testimonial-card__author">
-                <div class="testimonial-card__avatar">
-                  <span class="testimonial-card__avatar-letter">S</span>
-                </div>
-                <span class="testimonial-card__name">Seoum</span>
-              </div>
-            </div>
-
-            <!-- Testimonial 6 -->
-            <div class="testimonial-card">
-              <svg class="testimonial-card__quote" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-              </svg>
-              <p class="testimonial-card__text">"Руслан сделал все быстро и качественно + поправил еще пару багов на сайте бесплатно, что приятно) Продолжаем сотрудничать. Спасибо большое!"</p>
-              <div class="testimonial-card__author">
-                <div class="testimonial-card__avatar">
-                  <span class="testimonial-card__avatar-letter">И</span>
-                </div>
-                <span class="testimonial-card__name">Иван Smarthome24</span>
+                <span class="font-medium">Дмитрий Петров</span>
               </div>
             </div>
           </div>
 
-          <button class="testimonials__nav testimonials__nav--prev" aria-label="Предыдущий">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <!-- Navigation buttons -->
+          <button class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all" id="testimonials-prev">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
           </button>
-          <button class="testimonials__nav testimonials__nav--next" aria-label="Следующий">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <button class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all" id="testimonials-next">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
           </button>
@@ -1000,133 +953,149 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="contact__wrapper">
-          <div class="section__header" data-animate>
-            <h2 class="section__title">Свяжитесь со мной</h2>
-            <p class="section__description">Опишите вашу задачу — отвечу в течение нескольких часов</p>
-          </div>
+    <section id="contact" class="py-24 relative">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+        <div class="text-center mb-16" data-animate>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Свяжитесь со мной</h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto">Расскажите о вашем проекте, и я подготовлю индивидуальное предложение</p>
+        </div>
 
-          <div class="contact__form glass-card" data-animate data-animate-delay="100">
-            <form>
-              <div class="form-group">
-                <label for="name" class="form-label">Имя</label>
-                <input type="text" id="name" name="name" class="form-input" placeholder="Как к вам обращаться?" required>
-                <p class="form-error" style="display: none;">Имя должно содержать минимум 2 символа</p>
+        <div class="max-w-2xl mx-auto">
+          <form class="bg-card/50 backdrop-blur-xl border border-glass-border rounded-[1rem] p-6 md:p-8" id="contact-form">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label class="block text-sm font-medium mb-2">Имя</label>
+                <input type="text" required class="w-full px-4 py-3 bg-secondary border border-border rounded-[1rem] text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Ваше имя">
               </div>
-
-              <div class="form-group">
-                <label for="website" class="form-label">
-                  Сайт <span class="form-label__optional">(необязательно)</span>
-                </label>
-                <input type="url" id="website" name="website" class="form-input" placeholder="https://example.com">
-                <p class="form-error" style="display: none;">Введите корректный URL</p>
+              <div>
+                <label class="block text-sm font-medium mb-2">Email</label>
+                <input type="email" required class="w-full px-4 py-3 bg-secondary border border-border rounded-[1rem] text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="email@example.com">
               </div>
-
-              <div class="form-group">
-                <label for="task" class="form-label">Задача</label>
-                <textarea id="task" name="task" class="form-input form-textarea" placeholder="Опишите вашу задачу или проблему..." required></textarea>
-                <p class="form-error" style="display: none;">Опишите задачу подробнее (минимум 10 символов)</p>
-              </div>
-
-              <button type="submit" class="btn btn--primary btn--full btn--lg">
-                Отправить заявку
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                </svg>
-              </button>
-            </form>
-          </div>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-2">Телефон <span class="text-muted-foreground font-normal">(необязательно)</span></label>
+              <input type="tel" class="w-full px-4 py-3 bg-secondary border border-border rounded-[1rem] text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="+7 (999) 123-45-67">
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-2">Сообщение</label>
+              <textarea required rows="4" class="w-full px-4 py-3 bg-secondary border border-border rounded-[1rem] text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-y min-h-[120px]" placeholder="Опишите ваш проект..."></textarea>
+            </div>
+            <button type="submit" class="w-full px-6 py-4 bg-primary text-primary-foreground rounded-[1rem] font-medium text-lg hover:bg-primary/90 transition-all hover:shadow-glow">
+              Отправить заявку
+            </button>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="footer">
-    <!-- Main Footer -->
-    <div class="footer__main">
-      <div class="container">
-        <div class="footer__main-content">
-          <div class="footer__logo">
-            <div class="footer__logo-icon">
-              <span class="footer__logo-text">1C</span>
-            </div>
-            <span class="footer__logo-name">BitrixPro</span>
+  <footer class="border-t border-glass-border print-hide">
+    <div class="py-12">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <span class="font-mono font-bold text-primary-foreground text-lg">B</span>
           </div>
-
-          <div class="footer__contacts">
-            <a href="mailto:hello@bitrixpro.ru" class="footer__contact-link">
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-              hello@bitrixpro.ru
-            </a>
-            <a href="tel:+79991234567" class="footer__contact-link">
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-              </svg>
-              +7 (999) 123-45-67
-            </a>
-            <a href="https://t.me/bitrixpro" target="_blank" rel="noopener noreferrer" class="footer__contact-link">
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-              </svg>
-              Telegram
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Copyright Bar -->
-    <div class="footer__copyright">
-      <div class="container">
-        <div class="footer__copyright-content">
-          <div class="footer__links">
-            <a href="contacts.html" class="footer__link">Контакты</a>
-            <a href="blog.html" class="footer__link">Блог</a>
-            <a href="bitrix-editions.html" class="footer__link">Редакции 1С-Битрикс</a>
-            <span style="color: var(--color-muted-foreground);">ИП Иванов И.И. | ИНН: 123456789012</span>
-          </div>
-          <p class="footer__copyright-text">© 2010–2025 BitrixPro — Разработка на 1С-Битрикс</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Powered by -->
-    <div class="footer__powered">
-      <div class="container">
-        <a href="https://www.1c-bitrix.ru/products/cms/" target="_blank" rel="noopener noreferrer" class="footer__powered-link">
-          <img src="/assets/bitrix-logo-transparent.png" alt="1С-Битрикс" class="footer__powered-logo">
-          <span class="footer__powered-text">
-            Работает на <span class="footer__powered-highlight">«1С-Битрикс: Управление сайтом»</span>
-          </span>
+          <span class="font-semibold">BitrixPro</span>
         </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-6">
+          <a href="https://t.me/bitrixpro" class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            @bitrixpro
+          </a>
+          <a href="mailto:hello@bitrixpro.ru" class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            hello@bitrixpro.ru
+          </a>
+        </div>
       </div>
+    </div>
+
+    <div class="py-4 border-t border-glass-border bg-muted/30">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="contacts.html" class="text-muted-foreground hover:text-foreground transition-colors">Контакты</a>
+          <a href="blog.html" class="text-muted-foreground hover:text-foreground transition-colors">Блог</a>
+          <a href="bitrix-editions.html" class="text-muted-foreground hover:text-foreground transition-colors">Редакции Битрикс</a>
+        </div>
+        <span class="text-muted-foreground">© 2024 BitrixPro. Все права защищены.</span>
+      </div>
+    </div>
+
+    <div class="py-3 border-t border-glass-border bg-muted/50">
+      <a href="https://1c-bitrix.ru" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+        <img src="assets/images/bitrix-logo-transparent.png" alt="1С-Битрикс" class="h-8 w-auto">
+        <span class="text-sm">Сайт работает на <span class="font-medium text-foreground">1С-Битрикс</span></span>
+      </a>
     </div>
   </footer>
 
   <!-- Certificate Modal -->
-  <div class="modal" aria-hidden="true">
-    <div class="modal__content">
-      <button class="modal__close" aria-label="Закрыть">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <div class="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 p-4 opacity-0 invisible transition-all duration-300" id="certificate-modal">
+    <div class="relative bg-white rounded-xl max-w-lg w-full overflow-hidden shadow-2xl transform scale-90 transition-transform duration-300" id="modal-content">
+      <button class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-black/70 transition-colors" onclick="closeCertificateModal()">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
-      <div class="modal__image">
-        <img src="" alt="">
-      </div>
-      <div class="modal__info">
-        <h3 class="modal__title"></h3>
-        <p class="modal__subtitle">BitrixPro • 2024</p>
+      <div class="relative">
+        <img src="" alt="" class="w-full h-auto" id="modal-image">
+        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+          <h3 class="text-lg font-bold text-white" id="modal-title"></h3>
+          <p class="text-sm text-white/80" id="modal-subtitle">Сертификат 1С-Битрикс</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="js/main.js"></script>
+  <script>
+    // Certificate Modal Functions
+    function openCertificateModal(imageSrc, title) {
+      const modal = document.getElementById('certificate-modal');
+      const modalImage = document.getElementById('modal-image');
+      const modalTitle = document.getElementById('modal-title');
+      const modalContent = document.getElementById('modal-content');
+      
+      modalImage.src = imageSrc;
+      modalImage.alt = title;
+      modalTitle.textContent = title;
+      
+      modal.classList.remove('opacity-0', 'invisible');
+      modal.classList.add('opacity-100', 'visible');
+      modalContent.classList.remove('scale-90');
+      modalContent.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeCertificateModal() {
+      const modal = document.getElementById('certificate-modal');
+      const modalContent = document.getElementById('modal-content');
+      
+      modal.classList.add('opacity-0', 'invisible');
+      modal.classList.remove('opacity-100', 'visible');
+      modalContent.classList.add('scale-90');
+      modalContent.classList.remove('scale-100');
+      document.body.style.overflow = '';
+    }
+    
+    document.getElementById('certificate-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeCertificateModal();
+      }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeCertificateModal();
+      }
+    });
+  </script>
 </body>
 </html>
