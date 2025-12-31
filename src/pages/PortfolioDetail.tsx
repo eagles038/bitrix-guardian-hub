@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, ExternalLink, CheckCircle2, Sparkles, Target } fro
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import "./PortfolioDetail.css";
 
 const PortfolioDetail = () => {
   const project = {
@@ -31,78 +32,69 @@ const PortfolioDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="portfolio-detail">
       <Header />
       
-      <main className="pt-24 pb-16">
+      <main>
         {/* Breadcrumb & Back */}
-        <div className="container mx-auto px-4 mb-8">
-          <Link 
-            to="/#portfolio"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <div className="container portfolio-detail__breadcrumb">
+          <Link to="/#portfolio" className="portfolio-detail__back-link">
+            <ArrowLeft />
             Вернуться к портфолио
           </Link>
         </div>
 
         {/* Project Header */}
-        <div className="container mx-auto px-4 mb-12">
+        <div className="container portfolio-detail__header">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              {project.title}
-            </h1>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Calendar className="w-4 h-4" />
+            <h1 className="portfolio-detail__title">{project.title}</h1>
+            <div className="portfolio-detail__date">
+              <Calendar />
               <span>Добавлено: {project.date}</span>
             </div>
           </motion.div>
         </div>
 
         {/* Project Details */}
-        <div className="container mx-auto px-4 mb-16">
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="glass-card p-6 md:p-8"
+            className="portfolio-detail__card"
           >
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="portfolio-detail__grid">
               {/* Left Column - Task & Completed */}
-              <div className="space-y-6">
+              <div className="portfolio-detail__left">
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Target className="w-5 h-5 text-primary" />
-                    <h3 className="text-lg font-semibold text-foreground">Задача</h3>
+                  <div className="portfolio-detail__section-header">
+                    <Target className="icon-primary" />
+                    <h3 className="portfolio-detail__section-title">Задача</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.task}
-                  </p>
+                  <p className="portfolio-detail__text">{project.task}</p>
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <h3 className="text-lg font-semibold text-foreground">Выполнено</h3>
+                  <div className="portfolio-detail__section-header">
+                    <CheckCircle2 className="icon-green" />
+                    <h3 className="portfolio-detail__section-title">Выполнено</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.completed}
-                  </p>
+                  <p className="portfolio-detail__text">{project.completed}</p>
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Sparkles className="w-5 h-5 text-primary" />
-                    <h3 className="text-lg font-semibold text-foreground">Особенности проекта</h3>
+                  <div className="portfolio-detail__section-header">
+                    <Sparkles className="icon-primary" />
+                    <h3 className="portfolio-detail__section-title">Особенности проекта</h3>
                   </div>
-                  <ul className="space-y-2">
+                  <ul className="portfolio-detail__features-list">
                     {project.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2 text-muted-foreground">
-                        <span className="text-primary mt-1">•</span>
+                      <li key={index} className="portfolio-detail__feature-item">
+                        <span className="portfolio-detail__feature-bullet">•</span>
                         {feature}
                       </li>
                     ))}
@@ -111,20 +103,18 @@ const PortfolioDetail = () => {
               </div>
 
               {/* Right Column - CTA & Tags */}
-              <div className="space-y-6">
-                <div className="glass-card-hover p-6 text-center">
-                  <p className="text-muted-foreground mb-4">
+              <div className="portfolio-detail__right">
+                <div className="portfolio-detail__cta-card">
+                  <p className="portfolio-detail__cta-text">
                     Узнать стоимость разработки подобного проекта можно в разделе
                   </p>
                   <Link to="/#pricing">
-                    <Button variant="outline" className="mb-4">
-                      Услуги и цены
-                    </Button>
+                    <Button variant="outline">Услуги и цены</Button>
                   </Link>
-                  <div className="border-t border-glass-border pt-4 mt-4">
+                  <div className="portfolio-detail__cta-divider">
                     <Link to="/#contact">
-                      <Button variant="hero" size="lg" className="w-full gap-2">
-                        <Sparkles className="w-4 h-4" />
+                      <Button variant="hero" size="lg" className="portfolio-detail__cta-button">
+                        <Sparkles />
                         Заказать разработку
                       </Button>
                     </Link>
@@ -136,27 +126,22 @@ const PortfolioDetail = () => {
                     href={project.siteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="glass-card-hover p-4 flex items-center justify-between group"
+                    className="portfolio-detail__site-link"
                   >
                     <div>
-                      <p className="text-sm text-muted-foreground">Адрес сайта:</p>
-                      <p className="text-foreground font-medium">{project.siteUrl}</p>
+                      <p className="portfolio-detail__site-label">Адрес сайта:</p>
+                      <p className="portfolio-detail__site-url">{project.siteUrl}</p>
                     </div>
-                    <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <ExternalLink />
                   </a>
                 )}
 
                 {/* Tags */}
                 <div>
-                  <p className="text-sm text-muted-foreground mb-3">Технологии:</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p className="portfolio-detail__tags-label">Технологии:</p>
+                  <div className="portfolio-detail__tags-list">
                     {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-sm font-mono px-3 py-1.5 bg-primary/10 text-primary rounded-lg border border-primary/20"
-                      >
-                        {tag}
-                      </span>
+                      <span key={tag} className="portfolio-detail__tag">{tag}</span>
                     ))}
                   </div>
                 </div>
@@ -166,17 +151,17 @@ const PortfolioDetail = () => {
         </div>
 
         {/* Screenshots Section */}
-        <div className="container mx-auto px-4">
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+            <h2 className="portfolio-detail__screenshots-title">
               Скриншоты: {project.title}
             </h2>
             
-            <div className="space-y-6">
+            <div className="portfolio-detail__screenshots-list">
               {project.screenshots.map((screenshot, index) => (
                 <motion.div
                   key={index}
@@ -184,13 +169,13 @@ const PortfolioDetail = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass-card overflow-hidden"
+                  className="portfolio-detail__screenshot-card"
                 >
                   <img
                     src={screenshot}
                     alt={`Скриншот ${index > 0 ? `№${index}` : ""} ${project.title}`}
                     loading="lazy"
-                    className="w-full h-auto"
+                    className="portfolio-detail__screenshot-img"
                   />
                 </motion.div>
               ))}
@@ -199,30 +184,26 @@ const PortfolioDetail = () => {
         </div>
 
         {/* Related Projects / CTA Section */}
-        <div className="container mx-auto px-4 mt-16">
+        <div className="container portfolio-detail__bottom-cta">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="glass-card p-8 text-center"
+            className="portfolio-detail__bottom-cta-card"
           >
-            <h2 className="text-2xl font-bold text-foreground mb-4">
+            <h2 className="portfolio-detail__bottom-cta-title">
               Нужен похожий проект?
             </h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            <p className="portfolio-detail__bottom-cta-text">
               Свяжитесь со мной для обсуждения вашего проекта. Бесплатная консультация и оценка сроков.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="portfolio-detail__bottom-cta-buttons">
               <Link to="/#contact">
-                <Button variant="hero" size="lg">
-                  Обсудить проект
-                </Button>
+                <Button variant="hero" size="lg">Обсудить проект</Button>
               </Link>
               <Link to="/#portfolio">
-                <Button variant="outline" size="lg">
-                  Смотреть ещё проекты
-                </Button>
+                <Button variant="outline" size="lg">Смотреть ещё проекты</Button>
               </Link>
             </div>
           </motion.div>
