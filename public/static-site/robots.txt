@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://bitrixpro.ru/sitemap.xml
+
+# Disallow admin and system paths
+Disallow: /bitrix/
+Disallow: /local/
+Disallow: /upload/tmp/
+
+# Allow CSS and JS
+Allow: /css/
+Allow: /js/
+Allow: /assets/
