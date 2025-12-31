@@ -35,17 +35,17 @@ const PortfolioDetail = () => {
     <div className="portfolio-detail">
       <Header />
       
-      <main>
+      <main className="portfolio-detail__main">
         {/* Breadcrumb & Back */}
-        <div className="container portfolio-detail__breadcrumb">
+        <div className="portfolio-detail__container portfolio-detail__breadcrumb">
           <Link to="/#portfolio" className="portfolio-detail__back-link">
-            <ArrowLeft />
+            <ArrowLeft className="portfolio-detail__back-icon" />
             Вернуться к портфолио
           </Link>
         </div>
 
         {/* Project Header */}
-        <div className="container portfolio-detail__header">
+        <div className="portfolio-detail__container portfolio-detail__header">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,14 +53,14 @@ const PortfolioDetail = () => {
           >
             <h1 className="portfolio-detail__title">{project.title}</h1>
             <div className="portfolio-detail__date">
-              <Calendar />
+              <Calendar className="portfolio-detail__date-icon" />
               <span>Добавлено: {project.date}</span>
             </div>
           </motion.div>
         </div>
 
         {/* Project Details */}
-        <div className="container">
+        <div className="portfolio-detail__container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,32 +69,32 @@ const PortfolioDetail = () => {
           >
             <div className="portfolio-detail__grid">
               {/* Left Column - Task & Completed */}
-              <div className="portfolio-detail__left">
-                <div>
+              <div className="portfolio-detail__column">
+                <div className="portfolio-detail__section">
                   <div className="portfolio-detail__section-header">
-                    <Target className="icon-primary" />
+                    <Target className="portfolio-detail__section-icon portfolio-detail__section-icon--primary" />
                     <h3 className="portfolio-detail__section-title">Задача</h3>
                   </div>
-                  <p className="portfolio-detail__text">{project.task}</p>
+                  <p className="portfolio-detail__section-text">{project.task}</p>
                 </div>
 
-                <div>
+                <div className="portfolio-detail__section">
                   <div className="portfolio-detail__section-header">
-                    <CheckCircle2 className="icon-green" />
+                    <CheckCircle2 className="portfolio-detail__section-icon portfolio-detail__section-icon--success" />
                     <h3 className="portfolio-detail__section-title">Выполнено</h3>
                   </div>
-                  <p className="portfolio-detail__text">{project.completed}</p>
+                  <p className="portfolio-detail__section-text">{project.completed}</p>
                 </div>
 
-                <div>
+                <div className="portfolio-detail__section">
                   <div className="portfolio-detail__section-header">
-                    <Sparkles className="icon-primary" />
+                    <Sparkles className="portfolio-detail__section-icon portfolio-detail__section-icon--primary" />
                     <h3 className="portfolio-detail__section-title">Особенности проекта</h3>
                   </div>
                   <ul className="portfolio-detail__features-list">
                     {project.features.map((feature, index) => (
-                      <li key={index} className="portfolio-detail__feature-item">
-                        <span className="portfolio-detail__feature-bullet">•</span>
+                      <li key={index} className="portfolio-detail__features-item">
+                        <span className="portfolio-detail__features-bullet">•</span>
                         {feature}
                       </li>
                     ))}
@@ -103,7 +103,7 @@ const PortfolioDetail = () => {
               </div>
 
               {/* Right Column - CTA & Tags */}
-              <div className="portfolio-detail__right">
+              <div className="portfolio-detail__column">
                 <div className="portfolio-detail__cta-card">
                   <p className="portfolio-detail__cta-text">
                     Узнать стоимость разработки подобного проекта можно в разделе
@@ -114,7 +114,7 @@ const PortfolioDetail = () => {
                   <div className="portfolio-detail__cta-divider">
                     <Link to="/#contact">
                       <Button variant="hero" size="lg" className="portfolio-detail__cta-button">
-                        <Sparkles />
+                        <Sparkles className="portfolio-detail__cta-button-icon" />
                         Заказать разработку
                       </Button>
                     </Link>
@@ -132,16 +132,16 @@ const PortfolioDetail = () => {
                       <p className="portfolio-detail__site-label">Адрес сайта:</p>
                       <p className="portfolio-detail__site-url">{project.siteUrl}</p>
                     </div>
-                    <ExternalLink />
+                    <ExternalLink className="portfolio-detail__site-icon" />
                   </a>
                 )}
 
                 {/* Tags */}
-                <div>
+                <div className="portfolio-detail__tags">
                   <p className="portfolio-detail__tags-label">Технологии:</p>
                   <div className="portfolio-detail__tags-list">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="portfolio-detail__tag">{tag}</span>
+                      <span key={tag} className="portfolio-detail__tags-item">{tag}</span>
                     ))}
                   </div>
                 </div>
@@ -151,11 +151,12 @@ const PortfolioDetail = () => {
         </div>
 
         {/* Screenshots Section */}
-        <div className="container">
+        <div className="portfolio-detail__container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="portfolio-detail__screenshots"
           >
             <h2 className="portfolio-detail__screenshots-title">
               Скриншоты: {project.title}
@@ -169,13 +170,13 @@ const PortfolioDetail = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="portfolio-detail__screenshot-card"
+                  className="portfolio-detail__screenshots-item"
                 >
                   <img
                     src={screenshot}
                     alt={`Скриншот ${index > 0 ? `№${index}` : ""} ${project.title}`}
                     loading="lazy"
-                    className="portfolio-detail__screenshot-img"
+                    className="portfolio-detail__screenshots-image"
                   />
                 </motion.div>
               ))}
@@ -184,7 +185,7 @@ const PortfolioDetail = () => {
         </div>
 
         {/* Related Projects / CTA Section */}
-        <div className="container portfolio-detail__bottom-cta">
+        <div className="portfolio-detail__container portfolio-detail__bottom-cta">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
