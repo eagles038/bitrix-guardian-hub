@@ -94,13 +94,13 @@
 
 @media (min-width: 768px) {
   .hero__title {
-    font-size: 3.5rem;
+    font-size: 3.125rem;
   }
 }
 
 @media (min-width: 1024px) {
   .hero__title {
-    font-size: 4.5rem;
+    font-size: 3.75rem;
   }
 }
 
@@ -280,7 +280,7 @@
 /* Certificates Section */
 .certificates {
   position: relative;
-  padding: 5rem 0;
+  padding: 4rem 0;
   overflow: hidden;
 }
 
@@ -382,7 +382,7 @@
 
 /* About Section */
 .about {
-  padding: 5rem 0;
+  padding: 6rem 0;
 }
 
 .about__grid {
@@ -453,8 +453,8 @@
 
 /* Competencies Section */
 .competencies {
-  padding: 5rem 0;
-  background: hsla(0, 0%, 5%, 0.3);
+  padding: 4rem 0;
+  background: linear-gradient(180deg, transparent, hsla(0, 0%, 12%, 0.2), transparent);
 }
 
 .competencies__grid {
@@ -507,21 +507,17 @@
 
 /* Pricing Section */
 .pricing {
-  padding: 5rem 0;
+  padding: 6rem 0;
 }
 
 .pricing__grid {
   display: grid;
   gap: 1.5rem;
+  max-width: 80rem;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-  .pricing__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
   .pricing__grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -605,8 +601,7 @@
 
 /* Portfolio Section */
 .portfolio {
-  padding: 5rem 0;
-  background: hsla(0, 0%, 5%, 0.3);
+  padding: 6rem 0;
 }
 
 .portfolio__grid {
@@ -617,12 +612,6 @@
 @media (min-width: 768px) {
   .portfolio__grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .portfolio__grid {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -638,8 +627,14 @@
 
 .portfolio-card__image {
   position: relative;
-  aspect-ratio: 16 / 10;
+  height: 12rem;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .portfolio-card__image {
+    height: 14rem;
+  }
 }
 
 .portfolio-card__image img {
@@ -650,31 +645,80 @@
 }
 
 .portfolio-card:hover .portfolio-card__image img {
-  transform: scale(1.05);
-}
-
+  transform: scale(1.1);
 .portfolio-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, hsla(0, 0%, 0%, 0.8), transparent);
+  background: linear-gradient(to top, var(--color-card), transparent);
+}
+
+.portfolio-card__link-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: hsla(0, 0%, 5%, 0.8);
+  backdrop-filter: blur(4px);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-card__link-icon {
+  opacity: 1;
+}
+
+.portfolio-card__link-icon svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-foreground);
+}
+
+.portfolio-card__content {
   padding: 1.5rem;
 }
 
 .portfolio-card__title {
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--color-foreground);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
 }
 
-.portfolio-card__category {
-  font-size: 0.875rem;
+.portfolio-card:hover .portfolio-card__title {
   color: var(--color-primary);
+}
+
+.portfolio-card__description {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+  margin-bottom: 1rem;
+}
+
+.portfolio-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.portfolio-card__tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-secondary);
+  border-radius: 0.5rem;
+  color: var(--color-muted-foreground);
 }
 
 /* Testimonials Section */
 .testimonials {
-  padding: 5rem 0;
+  padding: 5rem 0 8rem;
+  background: var(--color-background);
 }
 
 .testimonials__container {
@@ -697,22 +741,30 @@
 
 .testimonial-card {
   flex-shrink: 0;
-  width: 20rem;
+  width: 100%;
   padding: 1.5rem;
   scroll-snap-align: start;
+  background: hsla(0, 0%, 5%, 0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color 0.3s ease;
+}
+
+.testimonial-card:hover {
+  border-color: hsla(338, 68%, 47%, 0.5);
 }
 
 @media (min-width: 768px) {
   .testimonial-card {
-    width: 24rem;
+    width: 50%;
   }
 }
 
-.testimonial-card__header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+@media (min-width: 1024px) {
+  .testimonial-card {
+    width: 33.333%;
+  }
 }
 
 .testimonial-card__avatar {
@@ -768,8 +820,7 @@
 
 /* Contact Section */
 .contact {
-  padding: 5rem 0;
-  background: hsla(0, 0%, 5%, 0.3);
+  padding: 6rem 0;
 }
 
 .contact__grid {
