@@ -56,7 +56,6 @@
   max-width: 56rem;
   margin: 0 auto;
   text-align: center;
-  padding: 0 1rem;
 }
 
 .hero__badge {
@@ -179,19 +178,26 @@
 /* Services Section */
 .services__grid {
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 @media (min-width: 768px) {
   .services__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 }
 
 .service-card {
   position: relative;
-  padding: 2rem;
+  padding: 1.5rem;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .service-card {
+    padding: 2rem;
+  }
 }
 
 .service-card--wide {
@@ -201,16 +207,6 @@
 @media (min-width: 768px) {
   .service-card--wide {
     grid-column: span 2;
-  }
-}
-
-@media (min-width: 1024px) {
-  .service-card--wide {
-    grid-column: span 1;
-  }
-  
-  .services__grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
