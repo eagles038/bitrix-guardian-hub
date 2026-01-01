@@ -76,7 +76,7 @@
   --radius-xl: 2rem;
   
   /* Container */
-  --container-max: 1200px;
+  --container-max: 1400px;
 }
 
 /* =========================================
@@ -134,13 +134,7 @@ ul, ol {
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding: 0 1.5rem;
-  }
+  padding: 0 1.5rem;
 }
 
 .visually-hidden {
@@ -513,7 +507,6 @@ ul, ol {
   max-width: 56rem;
   margin: 0 auto;
   text-align: center;
-  padding: 0 1rem;
 }
 
 .hero__badge {
@@ -687,6 +680,16 @@ ul, ol {
   }
 }
 
+.service-card--wide {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+  .service-card--wide {
+    grid-column: span 2;
+  }
+}
+
 .service-card {
   padding: 1.5rem;
   position: relative;
@@ -696,10 +699,6 @@ ul, ol {
 @media (min-width: 768px) {
   .service-card {
     padding: 2rem;
-  }
-  
-  .service-card--wide {
-    grid-column: span 2;
   }
 }
 
@@ -1165,7 +1164,7 @@ ul, ol {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  max-width: 64rem;
+  max-width: 80rem;
   margin: 0 auto;
 }
 
