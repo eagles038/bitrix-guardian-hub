@@ -361,7 +361,7 @@
 .ecommerce-pricing__grid {
   display: grid;
   gap: 2rem;
-  max-width: 64rem;
+  max-width: 80rem;
   margin: 0 auto;
 }
 
