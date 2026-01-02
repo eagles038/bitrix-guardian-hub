@@ -14,6 +14,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,39 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Track active section on scroll
+  useEffect(() => {
+    const sectionIds = ["services", "pricing", "portfolio", "about", "certificates", "testimonials", "contact"];
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+    );
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Check if nav item or its submenu is active
+  const isNavItemActive = (link: NavItem) => {
+    const sectionId = link.href.replace("#", "");
+    if (activeSection === sectionId) return true;
+    if (link.submenu) {
+      return link.submenu.some((sub) => sub.href.replace("#", "") === activeSection);
+    }
+    return false;
+  };
 
   const navLinks: NavItem[] = [
     {
@@ -81,12 +115,21 @@ const Header = () => {
               >
                 <a
                   href={link.href}
-                  className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium py-2"
+                  className={`relative flex items-center gap-1 transition-colors duration-200 text-sm font-medium py-2 ${
+                    isNavItemActive(link) ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {link.label}
                   {link.submenu && (
                     <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openSubmenu === link.label ? 'rotate-180' : ''}`} />
                   )}
+                  {/* Active indicator */}
+                  <motion.span
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    initial={false}
+                    animate={{ scaleX: isNavItemActive(link) ? 1 : 0, opacity: isNavItemActive(link) ? 1 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  />
                 </a>
 
                 {/* Desktop Dropdown */}
