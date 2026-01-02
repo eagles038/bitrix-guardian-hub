@@ -152,13 +152,27 @@
       });
     });
 
-    // Mobile submenu toggles
-    const mobileToggles = document.querySelectorAll('.header__mobile-toggle');
-    mobileToggles.forEach(function(toggle) {
-      toggle.addEventListener('click', function() {
+    // Mobile submenu toggle arrows (only arrow opens submenu, link navigates)
+    const mobileToggleArrows = document.querySelectorAll('.header__mobile-toggle-arrow');
+    mobileToggleArrows.forEach(function(arrow) {
+      arrow.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         const parent = this.closest('.header__mobile-item');
         if (parent) {
           parent.classList.toggle('header__mobile-item--open');
+        }
+      });
+    });
+
+    // Close mobile menu when clicking on toggle link
+    const mobileToggleLinks = document.querySelectorAll('.header__mobile-toggle-link');
+    mobileToggleLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        isOpen = false;
+        mobileNav.classList.remove('header__mobile-nav--open');
+        if (menuIcon) {
+          menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
         }
       });
     });
