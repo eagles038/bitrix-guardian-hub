@@ -166,10 +166,110 @@
 
       <!-- Desktop Navigation -->
       <nav class="header__nav">
-        <a href="#services" class="header__nav-link">Услуги</a>
+        <!-- Услуги с подменю -->
+        <div class="header__nav-item header__nav-item--has-submenu">
+          <a href="#services" class="header__nav-link">
+            Услуги
+            <svg class="header__nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </a>
+          <div class="header__submenu">
+            <a href="#services" class="header__submenu-item">
+              <svg class="header__submenu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+              <div class="header__submenu-content">
+                <span class="header__submenu-title">Веб-дизайн</span>
+                <span class="header__submenu-desc">UI/UX, прототипы, макеты</span>
+              </div>
+            </a>
+            <a href="#services" class="header__submenu-item">
+              <svg class="header__submenu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="9" y1="21" x2="9" y2="9"/>
+              </svg>
+              <div class="header__submenu-content">
+                <span class="header__submenu-title">HTML-верстка</span>
+                <span class="header__submenu-desc">Pixel Perfect, БЭМ</span>
+              </div>
+            </a>
+            <a href="#services" class="header__submenu-item">
+              <svg class="header__submenu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="6" height="6" rx="1"/>
+                <rect x="14" y="4" width="6" height="6" rx="1"/>
+                <rect x="4" y="14" width="6" height="6" rx="1"/>
+                <rect x="14" y="14" width="6" height="6" rx="1"/>
+              </svg>
+              <div class="header__submenu-content">
+                <span class="header__submenu-title">Интеграция на Битрикс</span>
+                <span class="header__submenu-desc">Натяжка, компоненты 2.0</span>
+              </div>
+            </a>
+            <a href="#services" class="header__submenu-item">
+              <svg class="header__submenu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+              </svg>
+              <div class="header__submenu-content">
+                <span class="header__submenu-title">Техподдержка</span>
+                <span class="header__submenu-desc">Доработки, обновления</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <a href="#pricing" class="header__nav-link">Тарифы</a>
         <a href="#portfolio" class="header__nav-link">Портфолио</a>
-        <a href="#about" class="header__nav-link">Обо мне</a>
+
+        <!-- Обо мне с подменю -->
+        <div class="header__nav-item header__nav-item--has-submenu">
+          <a href="#about" class="header__nav-link">
+            Обо мне
+            <svg class="header__nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </a>
+          <div class="header__submenu">
+            <a href="#about" class="header__submenu-item">
+              <svg class="header__submenu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="7"/>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+              </svg>
+              <div class="header__submenu-content">
+                <span class="header__submenu-title">Опыт и навыки</span>
+                <span class="header__submenu-desc">10+ лет в разработке</span>
+              </div>
+            </a>
+            <a href="#certificates" class="header__submenu-item">
+              <svg class="header__submenu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              <div class="header__submenu-content">
+                <span class="header__submenu-title">Сертификаты</span>
+                <span class="header__submenu-desc">Официальные сертификаты</span>
+              </div>
+            </a>
+            <a href="#testimonials" class="header__submenu-item">
+              <svg class="header__submenu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <div class="header__submenu-content">
+                <span class="header__submenu-title">Отзывы</span>
+                <span class="header__submenu-desc">Что говорят клиенты</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <a href="#contact" class="header__nav-link">Контакты</a>
       </nav>
 
@@ -193,10 +293,87 @@
 
     <!-- Mobile Navigation -->
     <nav class="header__mobile-nav">
-      <a href="#services" class="header__mobile-link">Услуги</a>
+      <!-- Услуги с подменю -->
+      <div class="header__mobile-item header__mobile-item--has-submenu">
+        <button class="header__mobile-toggle">
+          <span>Услуги</span>
+          <svg class="header__mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="header__mobile-submenu">
+          <a href="#services" class="header__mobile-sublink">
+            <svg class="header__mobile-subicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+            </svg>
+            Веб-дизайн
+          </a>
+          <a href="#services" class="header__mobile-sublink">
+            <svg class="header__mobile-subicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+            HTML-верстка
+          </a>
+          <a href="#services" class="header__mobile-sublink">
+            <svg class="header__mobile-subicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="4" width="6" height="6" rx="1"/>
+              <rect x="14" y="4" width="6" height="6" rx="1"/>
+              <rect x="4" y="14" width="6" height="6" rx="1"/>
+              <rect x="14" y="14" width="6" height="6" rx="1"/>
+            </svg>
+            Интеграция на Битрикс
+          </a>
+          <a href="#services" class="header__mobile-sublink">
+            <svg class="header__mobile-subicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+            </svg>
+            Техподдержка
+          </a>
+        </div>
+      </div>
+
       <a href="#pricing" class="header__mobile-link">Тарифы</a>
       <a href="#portfolio" class="header__mobile-link">Портфолио</a>
-      <a href="#about" class="header__mobile-link">Обо мне</a>
+
+      <!-- Обо мне с подменю -->
+      <div class="header__mobile-item header__mobile-item--has-submenu">
+        <button class="header__mobile-toggle">
+          <span>Обо мне</span>
+          <svg class="header__mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="header__mobile-submenu">
+          <a href="#about" class="header__mobile-sublink">
+            <svg class="header__mobile-subicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="7"/>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+            </svg>
+            Опыт и навыки
+          </a>
+          <a href="#certificates" class="header__mobile-sublink">
+            <svg class="header__mobile-subicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            Сертификаты
+          </a>
+          <a href="#testimonials" class="header__mobile-sublink">
+            <svg class="header__mobile-subicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            </svg>
+            Отзывы
+          </a>
+        </div>
+      </div>
+
       <a href="#contact" class="header__mobile-link">Контакты</a>
       <a href="#contact" class="btn btn--primary btn--lg">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
