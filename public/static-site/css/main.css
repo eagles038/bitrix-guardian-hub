@@ -560,6 +560,7 @@ ul, ol {
   max-height: 80vh;
   opacity: 1;
   padding: 1rem;
+  overflow-y: auto;
 }
 
 @media (min-width: 768px) {
