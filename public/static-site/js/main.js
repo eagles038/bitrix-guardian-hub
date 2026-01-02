@@ -165,9 +165,9 @@
       });
     });
 
-    // Close mobile menu when clicking on toggle link
-    const mobileToggleLinks = document.querySelectorAll('.header__mobile-toggle-link');
-    mobileToggleLinks.forEach(function(link) {
+    // Close mobile menu when clicking on any navigation link (toggle links and submenu links)
+    const allMobileLinks = document.querySelectorAll('.header__mobile-toggle-link, .header__mobile-sublink, .header__mobile-link');
+    allMobileLinks.forEach(function(link) {
       link.addEventListener('click', function() {
         isOpen = false;
         mobileNav.classList.remove('header__mobile-nav--open');
