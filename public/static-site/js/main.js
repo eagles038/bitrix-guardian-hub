@@ -54,6 +54,62 @@
     });
 
     updateHeader();
+
+    // Desktop submenu arrows
+    const navArrows = document.querySelectorAll('.header__nav-arrow');
+    navArrows.forEach(function(arrow) {
+      const navItem = arrow.closest('.header__nav-item--has-submenu');
+      const submenu = navItem.querySelector('.header__submenu');
+      
+      // Open on arrow hover
+      arrow.addEventListener('mouseenter', function() {
+        closeAllSubmenus();
+        navItem.classList.add('header__nav-item--submenu-open');
+      });
+      
+      // Open on arrow click
+      arrow.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = navItem.classList.contains('header__nav-item--submenu-open');
+        closeAllSubmenus();
+        if (!isOpen) {
+          navItem.classList.add('header__nav-item--submenu-open');
+        }
+      });
+      
+      // Keep submenu open when hovering over it
+      if (submenu) {
+        submenu.addEventListener('mouseleave', function() {
+          navItem.classList.remove('header__nav-item--submenu-open');
+        });
+      }
+    });
+
+    // Close submenus when mouse leaves nav item
+    const navItems = document.querySelectorAll('.header__nav-item--has-submenu');
+    navItems.forEach(function(item) {
+      item.addEventListener('mouseleave', function(e) {
+        // Check if mouse is moving to submenu
+        const submenu = item.querySelector('.header__submenu');
+        if (submenu && !submenu.contains(e.relatedTarget)) {
+          item.classList.remove('header__nav-item--submenu-open');
+        }
+      });
+    });
+
+    function closeAllSubmenus() {
+      document.querySelectorAll('.header__nav-item--submenu-open').forEach(function(item) {
+        item.classList.remove('header__nav-item--submenu-open');
+      });
+    }
+
+    // Close submenus when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.header__nav-item--has-submenu')) {
+        closeAllSubmenus();
+      }
+    });
   }
 
   // =========================================
