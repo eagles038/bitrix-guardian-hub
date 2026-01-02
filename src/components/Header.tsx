@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap, ChevronDown, Palette, Layout, Blocks, Headphones, Award, FileText, Users } from "lucide-react";
+import { Menu, X, Zap, ChevronDown, Palette, Layout, Blocks, Headphones, Award, FileText, Users, Phone, Mail, MapPin, ShoppingCart, Briefcase, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavItem {
   href: string;
   label: string;
+  isExternal?: boolean;
   submenu?: { href: string; label: string; icon?: React.ElementType; description?: string }[];
 }
 
@@ -15,6 +17,7 @@ const Header = () => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,6 +60,15 @@ const Header = () => {
     return false;
   };
 
+  // Top menu - pages/external links
+  const topMenuLinks: NavItem[] = [
+    { href: "/razrabotka-internet-magazinov", label: "Интернет-магазины", isExternal: true },
+    { href: "/redakcii-bitrix", label: "Редакции Битрикс", isExternal: true },
+    { href: "/blog", label: "Блог", isExternal: true },
+    { href: "/contacts", label: "Контакты", isExternal: true },
+  ];
+
+  // Main navigation menu
   const navLinks: NavItem[] = [
     {
       href: "#services",
@@ -91,10 +103,47 @@ const Header = () => {
         isScrolled ? "glass-card border-b" : "bg-transparent"
       }`}
     >
+      {/* Top Menu Bar */}
+      <div className={`border-b border-border/50 transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between">
+            {/* Contact info */}
+            <div className="hidden md:flex items-center gap-4 text-xs text-muted-foreground">
+              <a href="tel:+79001234567" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <Phone className="w-3 h-3" />
+                +7 (900) 123-45-67
+              </a>
+              <a href="mailto:info@bitrix-expert.ru" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <Mail className="w-3 h-3" />
+                info@bitrix-expert.ru
+              </a>
+            </div>
+            
+            {/* Top Navigation */}
+            <nav className="flex items-center gap-4 md:gap-6">
+              {topMenuLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`text-xs font-medium transition-colors duration-200 ${
+                    location.pathname === link.href 
+                      ? "text-primary" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Header */}
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-3 group">
             <svg className="w-10 h-10 text-foreground group-hover:text-primary transition-colors duration-300" viewBox="0 0 100 100" fill="currentColor">
               <path d="M50 5c-5 0-10 2-14 5L15 25c-4 3-7 8-7 14v22c0 6 3 11 7 14l21 15c4 3 9 5 14 5s10-2 14-5l21-15c4-3 7-8 7-14V39c0-6-3-11-7-14L64 10c-4-3-9-5-14-5zm0 15c2 0 4 1 5 2l15 11c2 1 3 3 3 5v16c0 2-1 4-3 5L55 70c-1 1-3 2-5 2s-4-1-5-2L30 59c-2-1-3-3-3-5V38c0-2 1-4 3-5l15-11c1-1 3-2 5-2z"/>
             </svg>
@@ -102,7 +151,7 @@ const Header = () => {
               <span className="font-bold text-foreground text-lg leading-tight">BITRIX</span>
               <span className="text-xs text-primary leading-tight">expert</span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
