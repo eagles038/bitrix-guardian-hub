@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Zap, ChevronDown, Palette, Layout, Blocks, Headphones, Award, FileText, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+interface NavItem {
+  href: string;
+  label: string;
+  submenu?: { href: string; label: string; icon?: React.ElementType; description?: string }[];
+}
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,11 +23,28 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "#services", label: "Услуги" },
+  const navLinks: NavItem[] = [
+    {
+      href: "#services",
+      label: "Услуги",
+      submenu: [
+        { href: "#services", label: "Веб-дизайн", icon: Palette, description: "UI/UX, прототипы, макеты" },
+        { href: "#services", label: "HTML-верстка", icon: Layout, description: "Pixel Perfect, БЭМ" },
+        { href: "#services", label: "Интеграция на Битрикс", icon: Blocks, description: "Натяжка, компоненты 2.0" },
+        { href: "#services", label: "Техподдержка", icon: Headphones, description: "Доработки, обновления" },
+      ],
+    },
     { href: "#pricing", label: "Тарифы" },
     { href: "#portfolio", label: "Портфолио" },
-    { href: "#about", label: "Обо мне" },
+    {
+      href: "#about",
+      label: "Обо мне",
+      submenu: [
+        { href: "#about", label: "Опыт и навыки", icon: Award, description: "10+ лет в разработке" },
+        { href: "#certificates", label: "Сертификаты", icon: FileText, description: "Официальные сертификаты" },
+        { href: "#testimonials", label: "Отзывы", icon: Users, description: "Что говорят клиенты" },
+      ],
+    },
     { href: "#contact", label: "Контакты" },
   ];
 
@@ -46,15 +71,57 @@ const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
-              <a
+              <div
                 key={link.href}
-                href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
+                className="relative"
+                onMouseEnter={() => link.submenu && setOpenSubmenu(link.label)}
+                onMouseLeave={() => setOpenSubmenu(null)}
               >
-                {link.label}
-              </a>
+                <a
+                  href={link.href}
+                  className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium py-2"
+                >
+                  {link.label}
+                  {link.submenu && (
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openSubmenu === link.label ? 'rotate-180' : ''}`} />
+                  )}
+                </a>
+
+                {/* Desktop Dropdown */}
+                <AnimatePresence>
+                  {link.submenu && openSubmenu === link.label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-1 w-64 bg-background border border-border rounded-xl shadow-xl z-50 overflow-hidden"
+                    >
+                      <div className="py-2">
+                        {link.submenu.map((subItem) => (
+                          <a
+                            key={subItem.label}
+                            href={subItem.href}
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-muted/50 transition-colors duration-200"
+                          >
+                            {subItem.icon && (
+                              <subItem.icon className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                            )}
+                            <div>
+                              <div className="text-sm font-medium text-foreground">{subItem.label}</div>
+                              {subItem.description && (
+                                <div className="text-xs text-muted-foreground mt-0.5">{subItem.description}</div>
+                              )}
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))}
           </nav>
 
@@ -77,31 +144,71 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t border-glass-border"
-          >
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <Button variant="hero" size="lg" className="mt-2 gap-2">
-                <Zap className="w-4 h-4" />
-                Быстрый аудит
-              </Button>
-            </div>
-          </motion.nav>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden py-4 border-t border-glass-border"
+            >
+              <div className="flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <div key={link.label}>
+                    {link.submenu ? (
+                      <>
+                        <button
+                          onClick={() => setMobileOpenSubmenu(mobileOpenSubmenu === link.label ? null : link.label)}
+                          className="flex items-center justify-between w-full text-muted-foreground hover:text-foreground transition-colors duration-200 py-3"
+                        >
+                          <span>{link.label}</span>
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileOpenSubmenu === link.label ? 'rotate-180' : ''}`} />
+                        </button>
+                        <AnimatePresence>
+                          {mobileOpenSubmenu === link.label && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="pl-4 border-l-2 border-primary/30 ml-2"
+                            >
+                              {link.submenu.map((subItem) => (
+                                <a
+                                  key={subItem.label}
+                                  href={subItem.href}
+                                  className="flex items-center gap-3 py-2.5 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                                  onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    setMobileOpenSubmenu(null);
+                                  }}
+                                >
+                                  {subItem.icon && <subItem.icon className="w-4 h-4 text-primary" />}
+                                  <span className="text-sm">{subItem.label}</span>
+                                </a>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="block text-muted-foreground hover:text-foreground transition-colors duration-200 py-3"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </a>
+                    )}
+                  </div>
+                ))}
+                <Button variant="hero" size="lg" className="mt-4 gap-2">
+                  <Zap className="w-4 h-4" />
+                  Быстрый аудит
+                </Button>
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   );
