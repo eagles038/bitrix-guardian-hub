@@ -228,6 +228,16 @@
         const href = this.getAttribute('href');
         if (href === '#') return;
         
+        // Only handle pure anchor links (e.g., "#section"), not links with paths
+        const fullHref = this.href;
+        const currentUrl = window.location.href.split('#')[0];
+        const linkUrl = fullHref.split('#')[0];
+        
+        // If link points to a different page, let browser handle it
+        if (linkUrl && linkUrl !== currentUrl && linkUrl !== '') {
+          return;
+        }
+        
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
