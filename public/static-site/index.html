@@ -1307,6 +1307,71 @@
     </div>
   </div>
 
+  <!-- Cookie Consent -->
+  <div class="cookie-consent" id="cookieConsent">
+    <button class="cookie-consent__close" aria-label="Закрыть" id="cookieClose">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="cookie-consent__content">
+      <div class="cookie-consent__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
+          <path d="M8.5 8.5v.01"/>
+          <path d="M16 15.5v.01"/>
+          <path d="M12 12v.01"/>
+          <path d="M11 17v.01"/>
+          <path d="M7 14v.01"/>
+        </svg>
+      </div>
+      <div class="cookie-consent__text">
+        <p>Этот сайт использует cookie. Продолжая пользоваться сайтом, вы даете согласие на использование ваших cookie-файлов.</p>
+        <div class="cookie-consent__buttons">
+          <button class="btn btn--primary btn--sm" id="cookieAccept">Принять</button>
+          <button class="btn btn--ghost btn--sm" id="cookieDetails">Подробнее</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Details Modal -->
+  <div class="cookie-modal" id="cookieModal" aria-hidden="true">
+    <div class="cookie-modal__content">
+      <button class="cookie-modal__close" aria-label="Закрыть" id="cookieModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="cookie-modal__header">
+        <svg class="cookie-modal__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
+          <path d="M8.5 8.5v.01"/>
+          <path d="M16 15.5v.01"/>
+          <path d="M12 12v.01"/>
+          <path d="M11 17v.01"/>
+          <path d="M7 14v.01"/>
+        </svg>
+        <h3 class="cookie-modal__title">Политика использования cookie</h3>
+      </div>
+      <div class="cookie-modal__body">
+        <p>Cookie-файлы — это небольшие текстовые файлы, которые сохраняются на вашем устройстве при посещении нашего сайта.</p>
+        <h4>Мы используем cookie для:</h4>
+        <ul>
+          <li>Обеспечения корректной работы сайта</li>
+          <li>Сохранения ваших настроек и предпочтений</li>
+          <li>Анализа использования сайта для его улучшения</li>
+          <li>Персонализации контента</li>
+        </ul>
+        <p class="cookie-modal__note">Вы можете отключить cookie в настройках браузера, однако это может повлиять на функциональность сайта.</p>
+      </div>
+      <div class="cookie-modal__footer">
+        <button class="btn btn--outline btn--sm" id="cookieModalCancel">Закрыть</button>
+        <button class="btn btn--primary btn--sm" id="cookieModalAccept">Принять все</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/main.js"></script>
 </body>
