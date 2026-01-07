@@ -9,6 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Certificates from "@/components/Certificates";
+import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
         <ContactForm />
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 };
