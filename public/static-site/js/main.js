@@ -21,6 +21,7 @@
     initPagination();
     initCodeCopy();
     initLazyLoading();
+    initCookieConsent();
   });
 
   // =========================================
@@ -592,5 +593,96 @@
     }
     return views.toString();
   };
+
+  // =========================================
+  // Cookie Consent
+  // =========================================
+  function initCookieConsent() {
+    const cookieConsent = document.getElementById('cookieConsent');
+    const cookieModal = document.getElementById('cookieModal');
+    
+    if (!cookieConsent) return;
+    
+    // Check if consent was already given
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent) return;
+    
+    // Show cookie banner after delay
+    setTimeout(function() {
+      cookieConsent.classList.add('cookie-consent--visible');
+    }, 1000);
+    
+    // Accept button
+    const acceptBtn = document.getElementById('cookieAccept');
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieConsent.classList.remove('cookie-consent--visible');
+      });
+    }
+    
+    // Close button (decline)
+    const closeBtn = document.getElementById('cookieClose');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'declined');
+        cookieConsent.classList.remove('cookie-consent--visible');
+      });
+    }
+    
+    // Details button - open modal
+    const detailsBtn = document.getElementById('cookieDetails');
+    if (detailsBtn && cookieModal) {
+      detailsBtn.addEventListener('click', function() {
+        cookieModal.classList.add('cookie-modal--visible');
+        cookieModal.setAttribute('aria-hidden', 'false');
+      });
+    }
+    
+    // Modal close button
+    const modalCloseBtn = document.getElementById('cookieModalClose');
+    const modalCancelBtn = document.getElementById('cookieModalCancel');
+    
+    function closeModal() {
+      if (cookieModal) {
+        cookieModal.classList.remove('cookie-modal--visible');
+        cookieModal.setAttribute('aria-hidden', 'true');
+      }
+    }
+    
+    if (modalCloseBtn) {
+      modalCloseBtn.addEventListener('click', closeModal);
+    }
+    
+    if (modalCancelBtn) {
+      modalCancelBtn.addEventListener('click', closeModal);
+    }
+    
+    // Modal accept button
+    const modalAcceptBtn = document.getElementById('cookieModalAccept');
+    if (modalAcceptBtn) {
+      modalAcceptBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        closeModal();
+        cookieConsent.classList.remove('cookie-consent--visible');
+      });
+    }
+    
+    // Close modal on backdrop click
+    if (cookieModal) {
+      cookieModal.addEventListener('click', function(e) {
+        if (e.target === cookieModal) {
+          closeModal();
+        }
+      });
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && cookieModal && cookieModal.classList.contains('cookie-modal--visible')) {
+        closeModal();
+      }
+    });
+  }
 
 })();
