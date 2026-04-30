@@ -181,6 +181,33 @@ const ContactForm = () => {
                   )}
                 </div>
 
+                {/* Consent */}
+                <div>
+                  <div className="flex items-start gap-3">
+                    <Checkbox
+                      id="consent"
+                      checked={formData.consent}
+                      onCheckedChange={(checked) => {
+                        setFormData((prev) => ({ ...prev, consent: checked === true }));
+                        if (errors.consent) setErrors((prev) => ({ ...prev, consent: "" }));
+                      }}
+                      className={errors.consent ? "border-destructive" : ""}
+                    />
+                    <label
+                      htmlFor="consent"
+                      className="text-sm text-muted-foreground leading-snug cursor-pointer"
+                    >
+                      Я согласен на обработку персональных данных в соответствии с{" "}
+                      <a href="#" className="text-primary hover:underline">
+                        политикой конфиденциальности
+                      </a>
+                    </label>
+                  </div>
+                  {errors.consent && (
+                    <p className="text-sm text-destructive mt-1">{errors.consent}</p>
+                  )}
+                </div>
+
                 {/* Submit */}
                 <Button
                   type="submit"
