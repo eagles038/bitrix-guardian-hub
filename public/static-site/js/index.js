@@ -150,8 +150,11 @@
       const requiredFields = form.querySelectorAll('[required]');
       
       requiredFields.forEach(function(field) {
-        const error = field.parentElement.querySelector('.form-error');
-        if (!field.value.trim()) {
+        const error = field.parentElement.querySelector('.form-error') 
+          || field.closest('.form-group')?.querySelector('.form-error');
+        const isCheckbox = field.type === 'checkbox';
+        const invalid = isCheckbox ? !field.checked : !field.value.trim();
+        if (invalid) {
           isValid = false;
           field.classList.add('form-input--error');
           if (error) error.style.display = 'block';
