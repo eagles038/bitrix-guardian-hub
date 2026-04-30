@@ -3795,13 +3795,14 @@ ul, ol {
 .cookie-modal__content {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  background: var(--color-card);
+  max-width: 32rem;
+  background: var(--color-background, hsl(0, 0%, 5%));
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: 0.5rem;
   padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   transform: scale(0.95);
-  transition: transform 0.3s;
+  transition: transform 0.2s ease;
 }
 
 .cookie-modal--visible .cookie-modal__content {
