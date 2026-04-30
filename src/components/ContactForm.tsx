@@ -26,6 +26,7 @@ const ContactForm = () => {
     name: "",
     website: "",
     task: "",
+    consent: false as boolean,
   });
 
   const handleChange = (
