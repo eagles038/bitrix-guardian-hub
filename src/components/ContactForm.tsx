@@ -4,6 +4,7 @@ import { Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
@@ -11,6 +12,9 @@ const contactSchema = z.object({
   name: z.string().min(2, "Имя должно содержать минимум 2 символа").max(100),
   website: z.string().url("Введите корректный URL").or(z.literal("")),
   task: z.string().min(10, "Опишите задачу подробнее (минимум 10 символов)").max(1000),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "Необходимо согласие на обработку персональных данных" }),
+  }),
 });
 
 const ContactForm = () => {
