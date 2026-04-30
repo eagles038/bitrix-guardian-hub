@@ -208,5 +208,15 @@
         if (error) error.style.display = 'none';
       });
     });
+
+    // Clear error on checkbox change
+    const checkbox = form.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+      checkbox.addEventListener('change', function() {
+        this.classList.remove('form-input--error');
+        const error = this.closest('.form-group')?.querySelector('.form-error');
+        if (error) error.style.display = 'none';
+      });
+    }
   }
 })();
