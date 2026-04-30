@@ -4,6 +4,7 @@ import { Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
@@ -11,6 +12,9 @@ const contactSchema = z.object({
   name: z.string().min(2, "Имя должно содержать минимум 2 символа").max(100),
   website: z.string().url("Введите корректный URL").or(z.literal("")),
   task: z.string().min(10, "Опишите задачу подробнее (минимум 10 символов)").max(1000),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "Необходимо согласие на обработку персональных данных" }),
+  }),
 });
 
 const ContactForm = () => {
@@ -22,6 +26,7 @@ const ContactForm = () => {
     name: "",
     website: "",
     task: "",
+    consent: false as boolean,
   });
 
   const handleChange = (
@@ -173,6 +178,33 @@ const ContactForm = () => {
                   />
                   {errors.task && (
                     <p className="text-sm text-destructive mt-1">{errors.task}</p>
+                  )}
+                </div>
+
+                {/* Consent */}
+                <div>
+                  <div className="flex items-start gap-3">
+                    <Checkbox
+                      id="consent"
+                      checked={formData.consent}
+                      onCheckedChange={(checked) => {
+                        setFormData((prev) => ({ ...prev, consent: checked === true }));
+                        if (errors.consent) setErrors((prev) => ({ ...prev, consent: "" }));
+                      }}
+                      className={errors.consent ? "border-destructive" : ""}
+                    />
+                    <label
+                      htmlFor="consent"
+                      className="text-sm text-muted-foreground leading-snug cursor-pointer"
+                    >
+                      Я согласен на обработку персональных данных в соответствии с{" "}
+                      <a href="#" className="text-primary hover:underline">
+                        политикой конфиденциальности
+                      </a>
+                    </label>
+                  </div>
+                  {errors.consent && (
+                    <p className="text-sm text-destructive mt-1">{errors.consent}</p>
                   )}
                 </div>
 

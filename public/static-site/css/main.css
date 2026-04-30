@@ -294,6 +294,63 @@ ul, ol {
   margin-top: 0.25rem;
 }
 
+/* Checkbox (consent) */
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  pointer-events: none;
+}
+
+.form-checkbox__box {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.125rem;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.form-checkbox__input:checked + .form-checkbox__box {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground, #fff);
+}
+
+.form-checkbox__input.form-input--error + .form-checkbox__box {
+  border-color: var(--color-destructive);
+}
+
+.form-checkbox__label {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+  line-height: 1.4;
+}
+
+.form-checkbox__link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.form-checkbox__link:hover {
+  text-decoration: underline;
+}
+
 /* =========================================
    7. Header
    ========================================= */
